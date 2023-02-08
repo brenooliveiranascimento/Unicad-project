@@ -12,14 +12,14 @@ export class RegisterController {
     const { 
       client, deliveryDate, departure, destiny
     }: DeliveryPropsInterface = req.body;
+
     try {
       const deliveryService = new Register();
       const register = await deliveryService.execute({ client, deliveryDate, departure, destiny });
+
       res.status(statusCodes.CREATED).json({ message: register });
     } catch(e: any) {
-      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
-
   }
 }
