@@ -1,0 +1,61 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontEnd
+    ports:
+      - 3000:3000
+    platform: linux/x86_64
+    working_dir: /app/unicad-frontend
+    volumes:
+      - ./frontEnd:/app/unicad-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+    networks:
+      - unicad-network
+  backend:
+    container_name: unicad_backend
+    build: ./backEnd
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    working_dir: /app/unicad-backend
+    volumes:
+      - ./backEnd:/app/unicad-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - MYSQLHOST=unicad_db
+      - MYSQLPASSWORD=senhaDoDB
+      - MYSQLUSER=root
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] 
+      timeout: 10s
+      retries: 5
+    networks:
+      - unicad-network
+  db:
+    image: mysql:8.0.21
+    container_name: unicad_db
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=senhaDoDB
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE
+    networks:
+      - unicad-network
+networks:
+  unicad-network:
+    driver: bridge
