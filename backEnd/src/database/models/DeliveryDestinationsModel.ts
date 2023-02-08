@@ -3,10 +3,9 @@ import db from '.';
 
 class DeliveryModel extends Model {
   declare id: number;
-  declare client: string;
-  declare deliveryDate: Date;
   declare departure: string;
   declare destiny: string;
+  declare deliveryId: number
 }
 
 DeliveryModel.init({
@@ -15,15 +14,6 @@ DeliveryModel.init({
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-  },
-  client: {
-    type: STRING(30),
-    allowNull: false,
-  },
-  deliveryDate: {
-    defaultValue: null,
-    allowNull: true,
-    type: DATE,
   },
   departure: {
     defaultValue: null,
@@ -34,6 +24,10 @@ DeliveryModel.init({
     defaultValue: null,
     allowNull: true,
     type: STRING(300),
+  },
+  deliveryId: {
+    type: INTEGER,
+    allowNull: false,
   },
 }, {
   sequelize: db,
