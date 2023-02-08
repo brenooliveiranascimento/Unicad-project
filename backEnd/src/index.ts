@@ -5,9 +5,9 @@ import 'dotenv/config';
 import errorMiddleware from './middlewares/errorMiddleware';
 const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.get('/', (_req, res) => res.json({ messagem: 'Unicad api on' }));
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 export default app;
