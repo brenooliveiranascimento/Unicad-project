@@ -8,4 +8,4 @@ COPY . .
 
 RUN npm install
 
-ENTRYPOINT [ "npm", "rum", "dev" ]
+ENTRYPOINT [ "npm", "start" ]

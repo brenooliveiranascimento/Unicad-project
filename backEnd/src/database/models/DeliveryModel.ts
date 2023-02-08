@@ -1,5 +1,4 @@
-import { DATE, BOOLEAN } from 'sequelize';
-import { Model, INTEGER, STRING } from 'sequelize';
+import { Model, INTEGER, STRING, DATE } from 'sequelize';
 import db from '.';
 
 class DeliveryModel extends Model {
