@@ -32,7 +32,7 @@ DeliveryDestinationModel.init({
   },
 }, {
   sequelize: db,
-  modelName: 'deliveryLocation',
+  modelName: 'deliverysDestination',
   timestamps: false,
   underscored: true
 });

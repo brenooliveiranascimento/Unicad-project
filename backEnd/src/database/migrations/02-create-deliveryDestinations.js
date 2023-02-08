@@ -1,19 +1,19 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('deliverysDestinations', {
+    await queryInterface.createTable('deliverys_destinations', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       departure: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: true
       },
-      destiny:  {
+      destiny: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: true
       },
       deliveryId: {
         allowNull: false,
@@ -22,12 +22,13 @@ module.exports = {
         onUpdate: 'cascade',
         references: {
           model: 'deliverys',
-          key: 'id',
+          key: 'id'
         },
-      },
-    });
+        field: 'delivery_id'
+      }
+    })
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('deliverysDestinations');
-  },
-};
+    await queryInterface.dropTable('deliverys_destinations')
+  }
+}

@@ -6,14 +6,14 @@ module.exports = {
         {
           id: 1,
           client: 'Breno Nascimento',
-          deliveryDate: new Date(),
+          delivery_date: new Date()
         }
       ],
-      {},
-    );
+      {}
+    )
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('deliverys', null, {});
-  },
-};
+    await queryInterface.bulkDelete('deliverys', null, {})
+  }
+}

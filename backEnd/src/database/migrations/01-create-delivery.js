@@ -5,19 +5,20 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       client: {
         allowNull: false,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(30)
       },
       deliveryDate: {
         type: Sequelize.DATE,
         allowNull: true,
-      },
-    });
+        field: 'delivery_date'
+      }
+    })
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('deliverys');
-  },
-};
+    await queryInterface.dropTable('deliverys')
+  }
+}
