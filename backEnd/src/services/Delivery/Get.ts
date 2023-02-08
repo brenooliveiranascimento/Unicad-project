@@ -8,10 +8,11 @@ export default class Get {
   async execute() {
     try {
       const deliverys = await DeliveryModel.findAll({
-        include: [{ model: DeliveryDestinationModel, as: 'deliverys_destinations' }],
+        include: [{ model: DeliveryDestinationModel, as: 'deliverysDestination' }],
       });
       return deliverys;
     } catch(e: any) {
+      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }

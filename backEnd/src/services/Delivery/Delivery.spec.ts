@@ -3,8 +3,11 @@ import chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 import { describe, it } from 'mocha';
-
+import DeliveryModel from '../../database/models/DeliveryModel';
+import { allDeliverysMock } from '../../utils/Mocks/DeliverysMocks';
 import App from '../../index';
+import DeliveryPropsInterface from '../../interfaces/DeliveryPropsInterface';
+import Delivery from '../../entities/Delivery/Delivery';
 
 chai.use(chaiHttp);
 
@@ -13,6 +16,7 @@ const { app } = new App();
 const { expect } = chai;
 
 describe('Testa se Register', () => {
+
     it('Registra uma nova entrega e retorna o status "200"', async () => {
       const httpResponse = await (await chai.request(app).post('/delivery/create').send({
         "client": "breno",
@@ -34,7 +38,9 @@ describe('Testa se Register', () => {
 
 describe('Testa se Get', () => {
   it('Retorna todos as entregas criada', async () => {
+    sinon.stub(DeliveryModel, "findAll").resolves(allDeliverysMock as DeliveryModel[]);
     const httpResponse = await (await chai.request(app).get('/delivery/get'))
+
     expect(httpResponse.status).to.be.equal(200);
   });
 });

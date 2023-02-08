@@ -4,7 +4,7 @@ import Register from "../../services/Delivery/Register";
 import statusCodes from "../../statusCode";
 import CustomError from "../../utils/StatusError";
 
-export class RegisterController {
+export default class RegisterController {
 
   constructor() {};
 
