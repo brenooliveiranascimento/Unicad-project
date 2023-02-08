@@ -6,6 +6,6 @@ const app = express();
 
 app.use(cors())
 
-app.get('/', (req, res) => res.json({ messagem: 'Unicad api on' }));
+app.get('/', (_req, res) => res.json({ messagem: 'Unicad api on' }));
 
 export default app;
