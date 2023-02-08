@@ -5,8 +5,6 @@ class DeliveryModel extends Model {
   declare id: number;
   declare client: string;
   declare deliveryDate: Date;
-  declare departure: string;
-  declare destiny: string;
 }
 
 DeliveryModel.init({
@@ -25,19 +23,9 @@ DeliveryModel.init({
     allowNull: true,
     type: DATE,
   },
-  departure: {
-    defaultValue: null,
-    allowNull: true,
-    type: STRING(300),
-  },  
-  destiny: {
-    defaultValue: null,
-    allowNull: true,
-    type: STRING(300),
-  },
 }, {
   sequelize: db,
-  modelName: 'delivery',
+  modelName: 'deliverys',
   timestamps: false,
   underscored: true
 });

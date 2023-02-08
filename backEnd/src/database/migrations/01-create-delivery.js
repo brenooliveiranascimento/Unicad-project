@@ -15,14 +15,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
-      departure: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      destiny:  {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
     });
   },
   down: async (queryInterface) => {
