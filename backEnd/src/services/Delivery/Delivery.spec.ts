@@ -12,5 +12,6 @@ test('create an delivery', async () => {
   };
 
   const service = new Register();
+  const newDelivery = service.execute(deliveryData);
   expect(service.execute(deliveryData)).resolves.toBeInstanceOf(Delivery);
 });
