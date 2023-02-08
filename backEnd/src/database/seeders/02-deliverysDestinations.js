@@ -10,11 +10,11 @@ module.exports = {
           delivery_id: 1
         }
       ],
-      {},
-    );
+      {}
+    )
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete('deliverys_destinations', null, {});
-  },
-};
+    await queryInterface.bulkDelete('deliverys_destinations', null, {})
+  }
+}

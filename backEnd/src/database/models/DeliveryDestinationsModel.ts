@@ -34,6 +34,7 @@ DeliveryDestinationModel.init({
   sequelize: db,
   modelName: 'deliverys_destinations',
   timestamps: false,
+  underscored: true
 });
 
 DeliveryModel.hasOne(DeliveryDestinationModel);

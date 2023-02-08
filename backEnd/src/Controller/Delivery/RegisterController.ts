@@ -6,18 +6,18 @@ import CustomError from "../../utils/StatusError";
 
 export class RegisterController {
 
-  constructor(private deliveryService = new Register()) {};
+  constructor() {};
 
   async execute(req: Request, res: Response) {
     const { 
       client, deliveryDate, departure, destiny
     }: DeliveryPropsInterface = req.body;
-
     try {
-      const register = await this.deliveryService
-      .execute({ client, deliveryDate, departure, destiny });
+      const deliveryService = new Register();
+      const register = await deliveryService.execute({ client, deliveryDate, departure, destiny });
       res.status(statusCodes.CREATED).json({ message: register });
     } catch(e: any) {
+      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
 

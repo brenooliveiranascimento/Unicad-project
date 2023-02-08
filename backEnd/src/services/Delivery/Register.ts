@@ -9,12 +9,14 @@ export default class Register {
   async execute({
     client, deliveryDate, departure, destiny
   }: DeliveryPropsInterface): Promise<Delivery> {
+    console.log(client)
     try {
       const newDelivery = await DeliveryModel.create({ client, deliveryDate });
       await DeliveryDestinationModel.create({ destiny, departure, deliveryId: newDelivery.id });
       
-      return new Delivery({client, deliveryDate, departure, destiny, id: newDelivery.id});
+      return new Delivery(client, deliveryDate, departure, destiny, newDelivery.id);
     } catch(e: any) {
+      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }
