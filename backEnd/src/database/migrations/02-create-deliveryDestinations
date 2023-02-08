@@ -21,7 +21,7 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade',
         references: {
-          model: 'deliverys',
+          model: 'delivery',
           key: 'id',
         },
       },

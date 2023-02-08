@@ -1,14 +1,15 @@
 import { Model, INTEGER, STRING, DATE } from 'sequelize';
+import DeliveryModel from './DeliveryModel';
 import db from '.';
 
-class DeliveryModel extends Model {
+class DeliveryDestinationModel extends Model {
   declare id: number;
   declare departure: string;
   declare destiny: string;
   declare deliveryId: number
 }
 
-DeliveryModel.init({
+DeliveryDestinationModel.init({
   id: {
     type: INTEGER,
     allowNull: false,
@@ -31,9 +32,12 @@ DeliveryModel.init({
   },
 }, {
   sequelize: db,
-  modelName: 'deliverys',
+  modelName: 'deliveryLocation',
   timestamps: false,
   underscored: true
 });
 
-export default DeliveryModel;
+DeliveryModel.hasOne(DeliveryDestinationModel);
+DeliveryDestinationModel.belongsTo(DeliveryModel);
+
+export default DeliveryDestinationModel;

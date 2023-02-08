@@ -37,7 +37,7 @@ DeliveryModel.init({
   },
 }, {
   sequelize: db,
-  modelName: 'deliverys',
+  modelName: 'delivery',
   timestamps: false,
   underscored: true
 });
