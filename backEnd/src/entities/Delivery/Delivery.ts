@@ -1,7 +1,7 @@
 import DeliveryPropsInterface from "../../interfaces/DeliveryPropsInterface";
 
 export default class Delivery {
-
+  
   constructor(
     private props: DeliveryPropsInterface
   ) {};

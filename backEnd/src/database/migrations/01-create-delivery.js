@@ -14,6 +14,7 @@ module.exports = {
       deliveryDate: {
         type: Sequelize.DATE,
         allowNull: true,
+        field: 'delivery_date'
       },
     });
   },
