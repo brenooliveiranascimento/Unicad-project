@@ -44,3 +44,17 @@ describe('Testa se Get', () => {
     expect(httpResponse.status).to.be.equal(200);
   });
 });
+
+describe('Testa se Update', () => {
+  it('Atualiza a entrega por meio do id', async () => {
+    sinon.stub(DeliveryModel, "findAll").resolves(allDeliverysMock as DeliveryModel[]);
+    const httpResponse = await (await chai.request(app).put('/delivery/update/1')
+    .send({
+      client: 'Fulano de tal',
+      destination: 'coordenada-x',
+      destiny: 'coordenada-x',
+    }));
+
+    expect(httpResponse.status).to.be.equal(200);
+  });
+});
