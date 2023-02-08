@@ -1,0 +1,51 @@
+import { DATE, BOOLEAN } from 'sequelize';
+import { Model, INTEGER, STRING } from 'sequelize';
+import db from '.';
+
+class DeliveryModel extends Model {
+  declare id: number;
+  declare client: string;
+  declare deliveryDate: Date;
+  declare departure: string;
+  declare destiny: string;
+}
+
+DeliveryModel.init({
+  id: {
+    type: INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  client: {
+    type: STRING(30),
+    allowNull: false,
+  },
+  deliveryDate: {
+    defaultValue: null,
+    allowNull: true,
+    type: DATE,
+  },
+  recoverPasswordToken: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
+  },  
+  departure: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
+  },  
+  destiny: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
+  },
+}, {
+  sequelize: db,
+  modelName: 'deliverys',
+  timestamps: false,
+  underscored: true
+});
+
+export default DeliveryModel;
