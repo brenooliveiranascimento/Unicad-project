@@ -1,4 +1,4 @@
-import DeliveryPropsInterface from "../interfaces/DeliveryPropsInterface";
+import DeliveryPropsInterface from "../../interfaces/DeliveryPropsInterface";
 
 export default class Delivery {
 

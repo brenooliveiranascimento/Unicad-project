@@ -1,5 +1,5 @@
 export default interface DeliveryPropsInterface {
-  id: number;
+  id?: number;
   client: string;
   departure: string;
   destiny: string;
