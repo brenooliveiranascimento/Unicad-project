@@ -3,10 +3,10 @@ import { DeliveryIState } from "../../../interfaces/globalState/DeliveryI";
 export const deliveryInitialState: DeliveryIState = {
   deliverys: [],
   error: false,
-  loading: true
+  loading: true,
 }
 
-export const deliveryInitialActionValue = {
+export const deliveryInitialActionValue: any = {
   type: '',
   payload: [],
 };
