@@ -13,7 +13,7 @@ export default class Register {
       const newDelivery = await DeliveryModel.create({ client, deliveryDate });
       await DeliveryDestinationModel.create({ destiny, departure, deliveryId: newDelivery.id });
       
-      return new Delivery(client, deliveryDate, departure, destiny, newDelivery.id);
+      return new Delivery({client, deliveryDate, departure, destiny, id: newDelivery.id})
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }

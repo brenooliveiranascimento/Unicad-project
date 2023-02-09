@@ -11,14 +11,13 @@ test('create an delivery', () => {
     id: 2
   }
 
-  const delivery = new Delivery(
-    'Breno',
-    new Date(),
-    'ddkwaopdkwaopd',
-    'dawijdwad',
-    2
-  );
+  const delivery = new Delivery({
+    client: 'Breno',
+    deliveryDate: new Date(),
+    departure: 'ddkwaopdkwaopd',
+    destiny: 'dawijdwad',
+  });
 
   expect(delivery).toBeInstanceOf(Delivery);
-  expect(delivery.client).toEqual('Breno');
+  expect(delivery.props.client).toEqual('Breno');
 });

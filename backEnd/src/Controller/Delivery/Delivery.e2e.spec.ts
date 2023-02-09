@@ -4,7 +4,7 @@ import chai from 'chai';
 import chaiHttp = require('chai-http');
 import { describe, it } from 'mocha';
 import DeliveryModel from '../../database/models/DeliveryModel';
-import { allDeliverysMock } from '../../utils/Mocks/DeliverysMocks';
+import { allDeliverysMock, fulanoUnitMockWhitDestination } from '../../utils/Mocks/DeliverysMocks';
 import App from '../../index';
 import DeliveryPropsInterface from '../../interfaces/DeliveryPropsInterface';
 import Delivery from '../../entities/Delivery/Delivery';
@@ -46,8 +46,7 @@ describe('Testa se Get', () => {
 });
 
 describe('Testa se Update', () => {
-  it('Atualiza a entrega por meio do id', async () => {
-    sinon.stub(DeliveryModel, "findAll").resolves(allDeliverysMock as DeliveryModel[]);
+  it('Lança um erro ao enviar dados inválidos!', async () => {
     const httpResponse = await (await chai.request(app).put('/delivery/update/1')
     .send({
       client: 'Fulano de tal',
@@ -55,6 +54,19 @@ describe('Testa se Update', () => {
       destiny: 'coordenada-x',
     }));
 
+    expect(httpResponse.status).to.be.equal(400);
+  });
+
+  it('Atualiza um Delivery com sucesso!', async () =>
+  {
+    sinon.stub(DeliveryModel, "update").resolves();
+    const httpResponse = await (await chai.request(app).put('/delivery/update/1')
+    .send({
+      client: 'Fulano de tal',
+      destiny: 'coordenada-x',
+      deliveryDate: "2023-02-08 19:20:14",
+      departure: "jdawiojdwiaod"
+    }));
     expect(httpResponse.status).to.be.equal(200);
   });
 });
