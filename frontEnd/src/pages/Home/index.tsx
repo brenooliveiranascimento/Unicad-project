@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import UseFetch from '../../customHooks/UseFetch';
+import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
 import { GetDeliverys } from '../../redux/actions/deliverys/Get';
 
 export default function Home() {
 
-  // const { data, loading, error } = UseFetch('delivery/get');
-
-  // if(loading) return <h1>loading</h1>;
-
-  // if(error) return <h1>error</h1>;
+  const { deliverys, error, loading } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
   const dispatch = useDispatch();
 
@@ -18,9 +15,13 @@ export default function Home() {
     dispatch(GetDeliverys());
   }, []);
 
+  if(loading) return <h1>loading</h1>
+
   return (
     <main>
-      dajiwojdw
+      <header>
+        Unicad Deliverys
+      </header>
     </main>
   )
 }
