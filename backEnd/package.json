@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register ./src/services/Delivery/*$NAME*.{test,spec}.ts -t 10000 --exit",
+    "test:e2e": "mocha -r ts-node/register ./src/Controller/Delivery/*$NAME*.{test,spec}.ts -t 10000 --exit",
+    "test:unit": "vitest",
     "start": "npm run build && node ./build/server.js",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "db:create": "npx -y tsc && npx sequelize-cli db:create && npx sequelize-cli db:migrate",

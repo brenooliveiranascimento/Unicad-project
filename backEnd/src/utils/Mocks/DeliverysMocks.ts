@@ -28,3 +28,11 @@ export const fulanoUnitMock = {
   client: "Fulano",
   deliveryDate: new Date(),
 }
+
+export const fulanoUnitMockWhitDestination = {
+  id: 99,
+  client: "Fulano",
+  deliveryDate: new Date(),
+  destiny: "AAA",
+  departure: "jdawiojdwiaod"
+}
