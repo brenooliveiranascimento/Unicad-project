@@ -17,6 +17,19 @@
   color: white;
 }
 
+.new_delivery_container form label {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+  flex-direction: column;
+}
+
+.new_delivery_container form label span {
+  margin-left: 0.4rem;
+}
+
 .new_delivery_container button {
   margin-top: 2rem;
   background-color: #4C4C74;
@@ -46,7 +59,40 @@
 }
 
 .map_container {
-  width: 300px;
+  width: 400px;
   height: 400px;
   background-color: red;
+}
+
+.calender_container {
+  display: flex;
+  height: 300px;
+  width: 400px;
+}
+
+.Sample__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.Sample__container > * > * {
+  margin: 10px;
+}
+
+.Sample__container__content {
+  display: flex;
+  max-width: 100%;
+  flex-basis: 420px;
+  flex-direction: column;
+  flex-grow: 100;
+  align-items: stretch;
+  padding-top: 1em;
+}
+
+.Sample__container__content .react-calendar {
+  margin: 0 auto;
 }
