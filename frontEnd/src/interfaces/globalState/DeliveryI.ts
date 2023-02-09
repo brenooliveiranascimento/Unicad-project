@@ -11,3 +11,9 @@ export interface DeliveryI {
   deliveryDate: Date;
   deliverysDestination: DestinationsI;
 }
+
+export interface DeliveryIState {
+  deliverys: DeliveryI[];
+  error: boolean;
+  loading: boolean;
+}
