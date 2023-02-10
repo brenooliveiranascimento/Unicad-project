@@ -10,16 +10,18 @@ export default class UpdateController {
   async execute(req: Request, res: Response) {
     const { id } = req.params;
     const {
-      client, deliveryDate, departure, destiny
+      client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName
     }: UpdateDeliveryProps = req.body;
 
-    const validateFields = new Delivery({client, deliveryDate, departure, destiny});
+    const validateFields = new Delivery({
+      client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName
+    });
     await validateFields.validateFields();
 
     try {
       const deliveryService = new Update();
       await deliveryService.execute({
-        client, deliveryDate, departure, destiny, id: Number(id)
+        client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id: Number(id)
       });
 
       res.status(statusCodes.OK).json({ message: 'Atualizado com sucesso!' });

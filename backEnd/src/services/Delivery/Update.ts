@@ -7,7 +7,7 @@ import Delivery from "../../entities/Delivery/Delivery";
 
 export default class Update {
   async execute({
-    client, deliveryDate, departure, destiny, id
+    client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id
   }: UpdateDeliveryProps) {
     try {
       await DeliveryModel.update(
@@ -16,10 +16,10 @@ export default class Update {
       );
 
       await DeliveryDestinationModel.update(
-        { destiny, departure },
+        { departureCoordenate, departureName, destinyCoordenate, destinyName },
         { where: { id } }
       );
-      return new Delivery({ client, deliveryDate, departure, destiny, id });
+      return new Delivery({ client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id });
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
