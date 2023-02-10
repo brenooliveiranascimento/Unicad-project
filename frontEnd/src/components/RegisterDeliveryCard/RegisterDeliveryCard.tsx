@@ -15,9 +15,12 @@ export default function RegisterDeliveryCard() {
   const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
 
-  const [exit, setExit] = useState('');
-  const [destiny, setDestiny] = useState('');
+  const [exitCoordenate, setExitCoordenate] = useState('');
+  const [destinyCoordenate, setDestinyCoordenate] = useState('');
   
+  const [exitName, setExitName] = useState<any>('');
+  const [destinyName, setDestinyName] = useState<any>('');
+
   const [client, setClient] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [error, setError] = useState('');
@@ -34,24 +37,26 @@ export default function RegisterDeliveryCard() {
 
   const onPlacesChangedA = () => {
     const places = searchBoxA!.getPlaces();
+    console.log(places)
 
     const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
       lng: place?.geometry?.location?.lng() || 0,
     };
-    setExit(`${location.lat} ${location.lng}`);
+    setExitCoordenate(`${location.lat} ${location.lng}`);
+    setExitName(place.formatted_address);
   };
 
   const onPlacesExitChangedB = () => {
     const places = searchBoxB!.getPlaces();
-
     const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
       lng: place?.geometry?.location?.lng() || 0,
     };
-    setDestiny(`${location.lat} ${location.lng}`);
+    setDestinyCoordenate(`${location.lat} ${location.lng}`);
+    setDestinyName(place.formatted_address);
   };
 
   const handleDate = (dateSelected: string) => {
@@ -64,20 +69,27 @@ export default function RegisterDeliveryCard() {
 
   const handleDelivery = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(CreateDeliverys({ client, deliveryDate, departure: exit, destiny: destiny }));
+    dispatch(CreateDeliverys({
+      client,
+      deliveryDate,
+      departureCoordenate: exitCoordenate,
+      departureName: exitName,
+      destinyCoordenate: destinyCoordenate,
+      destinyName: destinyName,
+    }));
     setTimeout(() => window.location.href = '/', 1000)
-  }
+  };
 
   useEffect(() => {
     if(validateClient(client) && validateDate(deliveryDate)
-    && validateDestination(destiny) && validateExit(exit)) {
+    && validateDestination(destinyCoordenate) && validateExit(exitCoordenate)) {
       setButtonDisabled(false);
       console.log('abilitado');
     } else {
       setButtonDisabled(true);
       console.log('desabilitado');
     };
-  }, [client, exit, destiny, deliveryDate]);
+  }, [client, destinyCoordenate, exitCoordenate, deliveryDate]);
 
   return (
     <form>
