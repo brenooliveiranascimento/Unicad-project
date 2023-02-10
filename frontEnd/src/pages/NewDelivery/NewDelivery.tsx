@@ -1,44 +1,81 @@
 import { LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
-import { useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import 'react-calendar/dist/Calendar.css';
+import { useDispatch } from 'react-redux';
+import { CreateDeliverys } from '../../redux/actions/delivery/Create';
+import { validateClient, validateDate, validateDestination, validateExit } from '../../utils/validateNewDeliveryProps';
+import { toast } from 'react-toastify';
 
 export default function NewDelivery() {
+  const dispatch = useDispatch();
 
-  const [searchBox, setSeartchBox] = useState<google.maps.places.SearchBox>();
+  const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
+  const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
+
+  const [exit, setExit] = useState('');
+  const [destiny, setDestiny] = useState('');
+  
   const [client, setClient] = useState('');
-  const [exit, setExit] = useState<{lat: number, lng: number}>();
-  const [destiny, setDestiny] = useState<{lat: number, lng: number}>();
   const [deliveryDate, setDeliveryDate] = useState('');
   const [error, setError] = useState('');
 
-  const onLoad = (ref: google.maps.places.SearchBox) => {
-    setSeartchBox(ref)
+  const [button, setButton] = useState(true);
+
+  const onLoada = (ref: google.maps.places.SearchBox) => {
+    setSeartchBoxA(ref);
   };
 
-  const onPlacesChanged = (destination: string) => {
-    const places = searchBox!.getPlaces();
+  const onLoadb = (ref: google.maps.places.SearchBox) => {
+    setSeartchBoxB(ref);
+  };
+
+  const onPlacesChangedA = () => {
+    const places = searchBoxA!.getPlaces();
 
     const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
       lng: place?.geometry?.location?.lng() || 0,
     };
-    if(destination === 'exit') {
-      setExit(location);
-    } else {
-      setDestiny(location);
+    setExit(`${location.lat} ${location.lng}`);
+  };
+
+  const onPlacesExitChangedB = () => {
+    const places = searchBoxB!.getPlaces();
+
+    const place = places![0];
+    const location = {
+      lat: place?.geometry?.location?.lat() || 0,
+      lng: place?.geometry?.location?.lng() || 0,
     };
-  }
+    setDestiny(`${location.lat} ${location.lng}`);
+  };
 
   const handleDate = (dateSelected: string) => {
     if(new Date(dateSelected) < new Date()) {
-      setError('A data de entrega não pode ser menor que a data atual');
-      return;
+      return setError('A data de entrega não pode ser menor que a data atual');
     };
-    setError('')
+    setError('');
     setDeliveryDate(dateSelected)
+  };
+
+  const handleDelivery = (e: FormEvent) => {
+    e.preventDefault();
+    toast.success('Entrega agendada com sucesso!');
+    dispatch(CreateDeliverys({ client, deliveryDate, departure: exit, destiny: destiny }));
   }
+
+  useEffect(() => {
+    if(validateClient(client) && validateDate(deliveryDate)
+    && validateDestination(destiny) && validateExit(exit)) {
+      setButton(false)
+      console.log('abilitado')
+    } else {
+      setButton(true)
+      console.log('desabilitado')
+    };
+  }, [client, exit, destiny, deliveryDate]);
 
   return (
     <main className={styles.new_delivery_container} >
@@ -52,17 +89,18 @@ export default function NewDelivery() {
             googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
             libraries={['places']}
           >
-          <section className={styles.search_container}> 
-            <StandaloneSearchBox onLoad={onLoad}
-              onPlacesChanged={() => onPlacesChanged('exit')}>
-                <input className={styles.search_input} placeholder='Saida'/>
-              </StandaloneSearchBox>
-
-              <StandaloneSearchBox onLoad={onLoad} 
-                onPlacesChanged={() => onPlacesChanged('destiny')}>
-                <input className={styles.search_input} placeholder='Destino'/>
-              </StandaloneSearchBox>
-            </section>
+            <StandaloneSearchBox 
+              onLoad={onLoada} 
+              onPlacesChanged={onPlacesChangedA}
+            >
+              <input className={styles.search_input} placeholder='Saida'/>
+            </StandaloneSearchBox>
+            <StandaloneSearchBox 
+              onLoad={onLoadb} 
+              onPlacesChanged={onPlacesExitChangedB}
+            >
+              <input className={styles.search_input} placeholder='Destino'/>
+            </StandaloneSearchBox>
           </LoadScript>
           <label>
             <span>Data de entrega</span>
@@ -71,9 +109,13 @@ export default function NewDelivery() {
               onChange={({target}) => handleDate(target.value)}
               type={'date'}
             />
-          { error && <span>{error}</span> }
+            { error && <span>{error}</span> }
           </label>
-        <button>
+        <button
+          style={{
+            border: button ? '1px solid red' : 'none'
+          }}
+        disabled={button} onClick={handleDelivery}>
           Cadastrar entrega
         </button>
       </form>

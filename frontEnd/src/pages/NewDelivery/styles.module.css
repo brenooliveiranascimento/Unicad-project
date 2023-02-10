@@ -7,8 +7,8 @@
 }
 
 .new_delivery_container form {
-  width: 350px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-direction: column;  
   align-items: center;
@@ -22,7 +22,7 @@
   align-items: flex-start;
   margin-top: 0.5rem;
   justify-content: flex-end;
-  font-size: 0.7rem;
+  font-size: 1rem;
   flex-direction: column;
 }
 
@@ -36,6 +36,7 @@
   border: none;
   color: white;
   padding: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .new_delivery_container input {
@@ -45,8 +46,10 @@
 
 .new_delivery_container input {
   background-color: #4C4C74;
-  width: 300px;
-  height: 1.4rem;
+  width: 400px;
+  height: 2rem;
+  font-size: 1.2rem;
+  padding: 0.2rem;
   margin: 0.4rem;
   color: #ddd;
 }
@@ -61,38 +64,4 @@
 .map_container {
   width: 400px;
   height: 400px;
-  background-color: red;
-}
-
-.calender_container {
-  display: flex;
-  height: 300px;
-  width: 400px;
-}
-
-.Sample__container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 10px 0;
-  padding: 10px;
-}
-
-.Sample__container > * > * {
-  margin: 10px;
-}
-
-.Sample__container__content {
-  display: flex;
-  max-width: 100%;
-  flex-basis: 420px;
-  flex-direction: column;
-  flex-grow: 100;
-  align-items: stretch;
-  padding-top: 1em;
-}
-
-.Sample__container__content .react-calendar {
-  margin: 0 auto;
 }

@@ -1,14 +1,21 @@
 export interface DestinationsI {
-  id: number;
+  id?: number;
   departure: string;
   destiny: string
-  deliveryId: number;
+  deliveryId?: number;
 };
 
-export interface DeliveryI {
-  id: number;
+export interface NewDeliveryBodyRequest {
   client: string;
-  deliveryDate: Date;
+  deliveryDate: string;
+  destiny: string;
+  departure: string;
+}
+
+export interface DeliveryI {
+  id?: number;
+  client: string;
+  deliveryDate: Date | string;
   deliverysDestination: DestinationsI;
 }
 
