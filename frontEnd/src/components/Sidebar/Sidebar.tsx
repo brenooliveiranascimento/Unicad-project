@@ -4,7 +4,12 @@ import styles from './styles.module.css';
 export default function Sidebar() {
   return (
     <aside className={styles.aside_container}>
-      aside
+      <a href='/'>
+        Home
+      </a>
+      <a href='/newDelivery'>
+        Cadastrar
+      </a>
     </aside>
   )
 }

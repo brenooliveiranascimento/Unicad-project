@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { CreateDeliverys } from '../../redux/actions/delivery/Create';
 import { validateClient, validateDate, validateDestination, validateExit } from '../../utils/validateNewDeliveryProps';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterDeliveryCard() {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
@@ -62,23 +64,23 @@ export default function RegisterDeliveryCard() {
 
   const handleDelivery = (e: FormEvent) => {
     e.preventDefault();
-    toast.success('Entrega agendada com sucesso!');
     dispatch(CreateDeliverys({ client, deliveryDate, departure: exit, destiny: destiny }));
+    setTimeout(() => window.location.href = '/', 1000)
   }
 
   useEffect(() => {
     if(validateClient(client) && validateDate(deliveryDate)
     && validateDestination(destiny) && validateExit(exit)) {
-      setButtonDisabled(false)
-      console.log('abilitado')
+      setButtonDisabled(false);
+      console.log('abilitado');
     } else {
-      setButtonDisabled(true)
-      console.log('desabilitado')
+      setButtonDisabled(true);
+      console.log('desabilitado');
     };
   }, [client, exit, destiny, deliveryDate]);
-  
+
   return (
-  <form>
+    <form>
         <h2>Cadastrar entrega</h2>
         <input  
           onChange={({ target: { value } }) => setClient(value) }

@@ -1,8 +1,5 @@
-import axios, { AxiosInstance, AxiosStatic } from 'axios';
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify';
 import connection from '../services/api.connection';
-
 
 export default function UseFetch(url: string) {
   const [data, setData] = useState(undefined);

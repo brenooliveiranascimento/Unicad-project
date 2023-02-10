@@ -7,16 +7,13 @@ import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   return (
-    <main className={styles.main_container}>
-      <Sidebar/>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={'/'} component={Home} />
-          <Route exact path={'/newDelivery'} component={NewDelivery} />
-          <Route exact path={'/deliveryDetails'} component={DeliveryDetails} />
-        </Switch>
-      </BrowserRouter>
-    </main>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={'/'} component={Home} />
+        <Route exact path={'/newDelivery'} component={NewDelivery} />
+        <Route exact path={'/deliveryDetails'} component={DeliveryDetails} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
