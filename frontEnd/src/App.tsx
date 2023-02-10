@@ -1,8 +1,9 @@
-import './App.css';
+import styles from './App.module.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import NewDelivery from './pages/NewDelivery/NewDelivery';
 import DeliveryDetails from './pages/DeliveryDetails/DeliveryDetails';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   return (

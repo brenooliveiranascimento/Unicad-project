@@ -54,14 +54,9 @@
   color: #ddd;
 }
 
-.search_container {
+.main_delivery_card_container {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.map_container {
-  width: 400px;
-  height: 400px;
 }
