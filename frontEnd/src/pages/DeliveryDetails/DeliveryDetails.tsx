@@ -29,8 +29,6 @@ export default function DeliveryDetails() {
     setCurrDelivery(findDelivery);
   }
 
-  const history = useHistory();
-
   const next = () => window.location.href = `http://localhost:3000/deliveryDetails/${Number(id) + 1}`;
   const prev = () => window.location.href = `http://localhost:3000/deliveryDetails/${Number(id) - 1}`;
 
