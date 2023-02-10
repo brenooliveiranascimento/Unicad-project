@@ -25,14 +25,26 @@ describe('Test in Service of Delivery', () => {
   
   test('Get all deliverys', () => {
     const delivery = new Get();
-    expect(delivery.execute()).resolves.toBeCalled();
+
+    sinon.stub(DeliveryModel, 'findAll').resolves([fulanoUnitMock as DeliveryModel]);
+
+    expect(delivery.execute()).resolves.deep.equal([fulanoUnitMock]);
   });
 
   test('Delete an delivery', () => {
     const delivery = new Delete();
-    sinon.stub(DeliveryModel, 'findByPk').resolves(fulanoUnitMock as any);
+    sinon.stub(DeliveryModel, 'findByPk').resolves(fulanoUnitMock as DeliveryModel);
     sinon.stub(DeliveryModel, 'destroy').resolves();
     expect(delivery.execute(1)).resolves.deep.equal('Delivery delected with success!');
+  });
+
+  test('delete a delivery that does not exist', () => {
+    const delivery = new Delete();
+
+    sinon.stub(DeliveryModel, 'findByPk').resolves(undefined);
+    sinon.stub(DeliveryModel, 'destroy').resolves();
+
+    expect(delivery.execute(99999)).resolves.deep.equal('Delivery dont exist');
   });
   
   afterEach(function () {
