@@ -18,19 +18,26 @@ const { expect } = chai;
 describe('Testa se Register', () => {
 
     it('Registra uma nova entrega e retorna o status "200"', async () => {
+      sinon.stub(DeliveryModel, 'create')
       const httpResponse = await (await chai.request(app).post('/delivery/create').send({
-        "client": "breno",
-        "deliveryDate": "2023-02-08 17:56:01",
-        "departure": "dawdwadwad",
-        "destiny": "dawdwadwd"
+        "client": "Brenera",
+        "destiny": "AAA",
+        "deliveryDate": "2023-02-08 19:20:14",
+        "departureCoordenate": "jdawiojdwiaod",
+        "destinyCoordenate": "destinyCoordenateadwadwad",
+        "departureName": "dawjidujwaiodwad",
+        "destinyName": "jdiofawjdiowa"
       }))
       expect(httpResponse.status).to.be.equal(201);
     });
     it('Lança um erro ao tentar cirar uma entrega sem o cliente', async () => {
       const httpResponse = await (await chai.request(app).post('/delivery/create').send({
-        "deliveryDate": "2023-02-08 17:56:01",
-        "departure": "dawdwadwad",
-        "destiny": "dawdwadwd"
+        "destiny": "AAA",
+        "deliveryDate": "2023-02-08 19:20:14",
+        "departureCoordenate": "jdawiojdwiaod",
+        "destinyCoordenate": "destinyCoordenateadwadwad",
+        "departureName": "dawjidujwaiodwad",
+        "destinyName": "jdiofawjdiowa"
       }))
       expect(httpResponse.status).to.be.equal(400);
     });
@@ -49,9 +56,11 @@ describe('Testa se Update', () => {
   it('Lança um erro ao enviar dados inválidos!', async () => {
     const httpResponse = await (await chai.request(app).put('/delivery/update/1')
     .send({
-      client: 'Fulano de tal',
-      destination: 'coordenada-x',
-      destiny: 'coordenada-x',
+      "destiny": "AAA",
+      "deliveryDate": "2023-02-08 19:20:14",
+      "departureCoordenate": "jdawiojdwiaod",
+      "departureName": "dawjidujwaiodwad",
+      "destinyName": "jdiofawjdiowa"
     }));
 
     expect(httpResponse.status).to.be.equal(400);
@@ -62,10 +71,13 @@ describe('Testa se Update', () => {
     sinon.stub(DeliveryModel, "update").resolves();
     const httpResponse = await (await chai.request(app).put('/delivery/update/1')
     .send({
-      client: 'Fulano de tal',
-      destiny: 'coordenada-x',
-      deliveryDate: "2023-02-08 19:20:14",
-      departure: "jdawiojdwiaod"
+      "client": "Brenera",
+      "destiny": "AAA",
+      "deliveryDate": "2023-02-08 19:20:14",
+      "departureCoordenate": "jdawiojdwiaod",
+      "destinyCoordenate": "destinyCoordenateadwadwad",
+      "departureName": "dawjidujwaiodwad",
+      "destinyName": "jdiofawjdiowa"
     }));
     expect(httpResponse.status).to.be.equal(200);
   });

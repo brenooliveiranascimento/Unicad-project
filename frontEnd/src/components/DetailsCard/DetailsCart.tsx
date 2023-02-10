@@ -18,8 +18,8 @@ export default function DetailsCart({ currDelivery, traceRoute }: IDetailsCard) 
 
   return (
     <section>
-      <h1>{currDelivery?.client}</h1>
-        <span>{currDelivery?.deliveryDate.toLocaleString()}</span>
+      <h1>{ currDelivery?.client }</h1>
+        <span>{ currDelivery?.deliveryDate.toLocaleString() }</span>
         <button onClick={traceRoute}>
           Traçar rota
         </button>

@@ -9,6 +9,8 @@
 .main_delivery_card_container {
   width: 100%;
   display: flex;
-  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
   justify-content: center;
+  align-items: center;
 }

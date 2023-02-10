@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
-
+import styles from './styles.module.css'
 export default function DeliveryTable() {
   const dispatch = useDispatch();
 
@@ -14,12 +14,13 @@ export default function DeliveryTable() {
   };
 
   return (
-    <table>
+    <section className={styles.table_container}>
+      <table className={styles.customers}>
       <thead>
         <th>Cliente</th>
-        <td>Data</td>
-        <td>Saida</td>
-        <td>Destino</td>
+        <th>Data</th>
+        <th>Saida</th>
+        <th>Destino</th>
       </thead>
       <tbody>
         {
@@ -39,5 +40,6 @@ export default function DeliveryTable() {
         }
       </tbody>
     </table>
+    </section>
   )
 }
