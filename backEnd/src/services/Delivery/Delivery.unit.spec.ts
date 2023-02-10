@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import Register from './Register';
 import Update from './Update';
 import sinon from 'sinon';
@@ -6,24 +6,37 @@ import Get from './Get';
 import { fulanoUnitMock, fulanoUnitMockWhitDestination } from '../../utils/Mocks/DeliverysMocks';
 import Delivery from '../../entities/Delivery/Delivery';
 import DeliveryModel from '../../database/models/DeliveryModel';
-import CustomError from '../../utils/StatusError';
 import Delete from './Delete';
 
 describe('Test in Service of Delivery', () => {
-  test('Create an delivery', () => {
+  it('Create an delivery', () => {
     const delivery = new Register();
     sinon.stub(DeliveryModel, 'create').resolves(fulanoUnitMock as DeliveryModel);
     expect(delivery.execute(fulanoUnitMockWhitDestination))
       .resolves.toBeInstanceOf(Delivery);
   });
   
-  test('Update an delivery', () => {
+  it('Update an delivery', () => {
     const delivery = new Update();
-    expect(delivery.execute(fulanoUnitMockWhitDestination))
-      .resolves.toBeInstanceOf(Delivery);
+    
+    sinon.stub(DeliveryModel, 'update').resolves();
+
+    const updateDelivery = delivery.execute(fulanoUnitMockWhitDestination)
+
+    expect(updateDelivery).resolves.toBeInstanceOf(Delivery);
+  });
+
+  it('Throws an error when updating a delivery that does not exist', () => {
+    const delivery = new Update();
+
+    sinon.stub(DeliveryModel, 'findByPk').resolves(undefined);
+    sinon.stub(DeliveryModel, 'destroy').resolves();
+
+      const update = delivery.execute({ ...fulanoUnitMockWhitDestination, id: 99999 });
+      expect(update).resolves.deep.equal("Delivery dont exist")
   });
   
-  test('Get all deliverys', () => {
+  it('Get all deliverys', () => {
     const delivery = new Get();
 
     sinon.stub(DeliveryModel, 'findAll').resolves([fulanoUnitMock as DeliveryModel]);
@@ -31,7 +44,7 @@ describe('Test in Service of Delivery', () => {
     expect(delivery.execute()).resolves.deep.equal([fulanoUnitMock]);
   });
 
-  test('Delete an delivery', () => {
+  it('Delete an delivery', () => {
     const delivery = new Delete();
 
     sinon.stub(DeliveryModel, 'findByPk').resolves(fulanoUnitMock as DeliveryModel);
@@ -40,7 +53,7 @@ describe('Test in Service of Delivery', () => {
     expect(delivery.execute(1)).resolves.deep.equal('Delivery delected with success!');
   });
 
-  test('Delete a delivery that does not exist', () => {
+  it('Delete a delivery that does not exist', () => {
     const delivery = new Delete();
 
     sinon.stub(DeliveryModel, 'findByPk').resolves(undefined);

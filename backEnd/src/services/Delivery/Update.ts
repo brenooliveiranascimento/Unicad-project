@@ -23,7 +23,7 @@ export default class Update {
         );
         return new Delivery({ client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id });
       } else {
-        throw new CustomError('Delivery dont exist', statusCodes.NOT_FOUND);  
+        return 'Delivery dont exist'
       }
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
