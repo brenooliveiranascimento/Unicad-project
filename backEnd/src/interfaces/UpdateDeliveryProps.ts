@@ -1,7 +1,9 @@
 export default interface UpdateDeliveryProps {
-  client: string;
-  destiny: string;
-  departure: string;
-  deliveryDate: Date;
   id: number;
+  client: string;
+  departureCoordenate: string;
+  destinyCoordenate: string;
+  departureName: string;
+  destinyName: string;
+  deliveryDate: Date;
 }

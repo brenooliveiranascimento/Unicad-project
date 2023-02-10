@@ -1,13 +1,15 @@
 import { Dispatch } from "react";
 import { toast } from "react-toastify";
 import UseFetch from "../../../customHooks/UseFetch";
+import GlobalStateI from "../../../interfaces/globalState/GlobalStateI";
 import connection from "../../../services/api.connection";
 import { DeliveryTypes } from "../acionTypes";
 import { genericAction } from "../genericAction";
 
 export const GetDeliverys = (): any => {
-  return async (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<any>, state:() => GlobalStateI) => {
     try {
+      if(state().deliverys.deliverys.length) return;
       const { data } = await connection('delivery/get');
       dispatch(genericAction(DeliveryTypes.GET_DELIVERYS, data.message));
     } catch(e: any) {

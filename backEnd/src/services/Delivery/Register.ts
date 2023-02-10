@@ -7,13 +7,34 @@ import DeliveryDestinationModel from "../../database/models/DeliveryDestinations
 
 export default class Register {
   async execute({
-    client, deliveryDate, departure, destiny
+    client,
+    deliveryDate, 
+    departureCoordenate,
+    destinyCoordenate,
+    departureName,
+    destinyName
   }: DeliveryPropsInterface): Promise<Delivery> {
+
     try {
       const newDelivery = await DeliveryModel.create({ client, deliveryDate });
-      await DeliveryDestinationModel.create({ destiny, departure, deliveryId: newDelivery.id });
+      await DeliveryDestinationModel.create({ 
+        departureCoordenate,
+        destinyCoordenate,
+        departureName,
+        destinyName,
+        deliveryId: newDelivery.id
+      });
       
-      return new Delivery({client, deliveryDate, departure, destiny, id: newDelivery.id})
+      return new Delivery({
+        client,
+        deliveryDate,
+        departureCoordenate,
+        destinyCoordenate,
+        departureName,
+        destinyName,
+        id: newDelivery.id
+      });
+      
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }

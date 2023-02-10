@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import DeliveryTable from '../../components/DeliveryTable/DeliveryTable';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import UseFetch from '../../customHooks/UseFetch';
+import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
 import { GetDeliverys } from '../../redux/actions/delivery/Get';
 import styles from './styles.module.css';
@@ -27,9 +29,7 @@ export default function Home() {
     <main className={styles.home_container}>
       <Sidebar/>
       <section className={styles.main_delivery_card_container} >
-        <header>
-          Unicad Deliverys
-        </header>
+        <DeliveryTable />
       </section>
     </main>
   )

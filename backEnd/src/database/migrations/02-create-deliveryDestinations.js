@@ -7,13 +7,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      departure: {
+      departureCoordenate: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
+        field: 'departure_coordenate'
       },
-      destiny: {
+      destinyCoordenate: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
+        field: 'destiny_coordenate'
+      },
+      departureName: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+        allowNull: true,
+        field: 'departure_name'
+      },  
+      destinyName: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+        allowNull: true,
+        field: 'destiny_name'
       },
       deliveryId: {
         allowNull: false,

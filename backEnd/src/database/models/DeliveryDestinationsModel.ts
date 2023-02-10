@@ -4,8 +4,10 @@ import db from '.';
 
 class DeliveryDestinationModel extends Model {
   declare id: number;
-  declare departure: string;
-  declare destiny: string;
+  declare departureCoordenate: string;
+  declare destinyCoordenate: string;
+  declare departureName: string;
+  declare destinyName: string;
   declare deliveryId: number
 }
 
@@ -16,12 +18,22 @@ DeliveryDestinationModel.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  departure: {
+  departureCoordenate: {
     defaultValue: null,
     allowNull: true,
     type: STRING(300),
   },  
-  destiny: {
+  destinyCoordenate: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
+  },
+  departureName: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
+  },  
+  destinyName: {
     defaultValue: null,
     allowNull: true,
     type: STRING(300),

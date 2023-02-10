@@ -1,15 +1,19 @@
 export interface DestinationsI {
   id?: number;
-  departure: string;
-  destiny: string
+  departureCoordenate: string;
+  destinyCoordenate: string;
+  departureName: string;
+  destinyName: string;
   deliveryId?: number;
 };
 
 export interface NewDeliveryBodyRequest {
   client: string;
   deliveryDate: string;
-  destiny: string;
-  departure: string;
+  departureCoordenate: string;
+  destinyCoordenate: string;
+  departureName: string;
+  destinyName: string;
 }
 
 export interface DeliveryI {
@@ -23,4 +27,5 @@ export interface DeliveryIState {
   deliverys: DeliveryI[];
   error: boolean;
   loading: boolean;
+  currDelivery: DeliveryI;
 }

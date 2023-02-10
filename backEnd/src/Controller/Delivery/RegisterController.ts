@@ -8,18 +8,14 @@ import CustomError from "../../utils/StatusError";
 export default class RegisterController {
 
   async execute(req: Request, res: Response) {
-    const { 
-      client, deliveryDate, departure, destiny
-    }: DeliveryPropsInterface = req.body;
+    const deliveryDate: DeliveryPropsInterface = req.body;
 
-    console.log('a')
-
-    const validateFields = new Delivery({client, deliveryDate, departure, destiny});
+    const validateFields = new Delivery(deliveryDate);
     await validateFields.validateFields();
 
     try {
       const deliveryService = new Register();
-      const register = await deliveryService.execute({ client, deliveryDate, departure, destiny });
+      const register = await deliveryService.execute(deliveryDate);
 
       res.status(statusCodes.CREATED).json({ message: register.props });
     } catch(e: any) {

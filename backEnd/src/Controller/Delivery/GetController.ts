@@ -5,7 +5,7 @@ import CustomError from "../../utils/StatusError";
 
 export default class GetController {
 
-  async execute(req: Request, res: Response) {
+  async execute(_req: Request, res: Response) {
     try {
       const deliveryService = new Get();
       const deliverys = await deliveryService.execute();
