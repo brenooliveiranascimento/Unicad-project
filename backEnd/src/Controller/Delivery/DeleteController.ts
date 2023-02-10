@@ -9,7 +9,7 @@ export default class DeleteController {
     const deleteService = new Delete();
 
     try {
-      const deleteDelivery = deleteService.execute(Number(id));
+      const deleteDelivery = await deleteService.execute(Number(id));
       if(typeof deleteDelivery === 'string') {
         return res.status(statusCodes.NOT_FOUND).json({ message: deleteDelivery });
       }
