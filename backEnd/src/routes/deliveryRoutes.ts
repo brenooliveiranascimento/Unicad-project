@@ -14,6 +14,6 @@ const deleteController = new DeleteController();
 deliveryRouter.post('/create', registerController.execute);
 deliveryRouter.get('/get', getController.execute);
 deliveryRouter.put('/update/:id', updateControlelr.execute);
-deliveryRouter.delete('/update/:id', deleteController.execute);
+deliveryRouter.delete('/delete/:id', deleteController.execute);
 
 export default deliveryRouter;
