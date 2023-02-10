@@ -14,7 +14,6 @@ class App {
     this.config();
 
 
-    this.app.get('/', async (req, res) => res.status(200).json({ message: "AmoPromo" }));
     this.routes();
   }
 

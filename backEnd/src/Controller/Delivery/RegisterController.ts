@@ -12,6 +12,8 @@ export default class RegisterController {
       client, deliveryDate, departure, destiny
     }: DeliveryPropsInterface = req.body;
 
+    console.log('a')
+
     const validateFields = new Delivery({client, deliveryDate, departure, destiny});
     await validateFields.validateFields();
 
