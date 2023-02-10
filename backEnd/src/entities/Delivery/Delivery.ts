@@ -26,7 +26,7 @@ export default class Delivery {
     return {...this.props} as DeliveryPropsInterface;
   }
 
-  async getById(id: number) {
+  static async getById(id: number) {
     const delivery = await DeliveryModel.findByPk(id);
     return delivery;
   }
