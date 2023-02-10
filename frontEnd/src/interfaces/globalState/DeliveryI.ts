@@ -27,4 +27,5 @@ export interface DeliveryIState {
   deliverys: DeliveryI[];
   error: boolean;
   loading: boolean;
+  currDelivery: DeliveryI;
 }

@@ -7,6 +7,8 @@ export default function delivery(
   ) {
     console.log(action)
     switch(action.type) {
+      case DeliveryTypes.SELECT_A_DELIVERY:
+        return { ...state, currDelivery: action.payload };
       case DeliveryTypes.GET_DELIVERYS:
         return { ...state, deliverys: [...action.payload], loading: false };
       case DeliveryTypes.CREATE_DELIVERY:
