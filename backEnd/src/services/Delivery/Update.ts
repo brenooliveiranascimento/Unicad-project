@@ -10,16 +10,21 @@ export default class Update {
     client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id
   }: UpdateDeliveryProps) {
     try {
-      await DeliveryModel.update(
-        { client, deliveryDate },
-        { where: { id } }
-      );
-
-      await DeliveryDestinationModel.update(
-        { departureCoordenate, departureName, destinyCoordenate, destinyName },
-        { where: { id } }
-      );
-      return new Delivery({ client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id });
+      const checkExist = await Delivery.getById(id);
+      if(checkExist) {
+        await DeliveryModel.update(
+          { client, deliveryDate },
+          { where: { id } }
+        );
+  
+        await DeliveryDestinationModel.update(
+          { departureCoordenate, departureName, destinyCoordenate, destinyName },
+          { where: { id } }
+        );
+        return new Delivery({ client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id });
+      } else {
+        return 'Delivery dont exist'
+      }
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }

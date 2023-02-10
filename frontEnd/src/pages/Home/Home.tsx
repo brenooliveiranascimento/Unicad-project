@@ -23,13 +23,11 @@ export default function Home() {
     dispatch(GetDeliverys());
   }, []);
 
-  if(loading) return <h1>loading</h1>
-
   return (
     <main className={styles.home_container}>
       <Sidebar/>
       <section className={styles.main_delivery_card_container} >
-        <DeliveryTable />
+        { loading ? <h1>Loading</h1> : <DeliveryTable /> }
       </section>
     </main>
   )

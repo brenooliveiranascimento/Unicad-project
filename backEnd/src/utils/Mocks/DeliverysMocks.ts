@@ -30,9 +30,12 @@ export const fulanoUnitMock = {
 }
 
 export const fulanoUnitMockWhitDestination = {
-  id: 99,
-  client: "Fulano",
+  client: 'Brenera',
+  destiny: 'AAA',
   deliveryDate: new Date(),
-  destiny: "AAA",
-  departure: "jdawiojdwiaod"
+  departureCoordenate: 'jdawiojdwiaod',
+  destinyCoordenate: 'destinyCoordenateadwadwad',
+  departureName: 'dawjidujwaiodwad',
+  destinyName: 'jdiofawjdiowa',
+  id: 2
 }

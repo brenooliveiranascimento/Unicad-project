@@ -10,7 +10,7 @@ export default class GetController {
       const deliveryService = new Get();
       const deliverys = await deliveryService.execute();
 
-      res.status(statusCodes.OK).json({ message: deliverys });
+      return res.status(statusCodes.OK).json({ message: deliverys });
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
