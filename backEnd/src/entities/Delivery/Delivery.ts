@@ -1,3 +1,4 @@
+import DeliveryModel from "../../database/models/DeliveryModel";
 import DeliveryPropsInterface from "../../interfaces/DeliveryPropsInterface";
 import statusCodes from "../../statusCode";
 import CustomError from "../../utils/StatusError";
@@ -23,5 +24,10 @@ export default class Delivery {
 
   async getDelivery() {
     return {...this.props} as DeliveryPropsInterface;
+  }
+
+  async getById(id: number) {
+    const delivery = await DeliveryModel.findByPk(id);
+    return delivery;
   }
 }
