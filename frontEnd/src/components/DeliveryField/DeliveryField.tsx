@@ -25,17 +25,16 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [exitName, setExitName] = useState<any>('');
   const [destinyName, setDestinyName] = useState<any>('');
 
-  const onLoada = (ref: google.maps.places.SearchBox) => {
+  const onLoadSearchBoxA = (ref: google.maps.places.SearchBox) => {
     setSeartchBoxA(ref);
   };
 
-  const onLoadb = (ref: google.maps.places.SearchBox) => {
+  const onLoadSearchBoxB = (ref: google.maps.places.SearchBox) => {
     setSeartchBoxB(ref);
   };
 
   const onPlacesChangedA = () => {
     const places = searchBoxA!.getPlaces();
-    console.log(places)
 
     const place = places![0];
     const location = {
@@ -93,7 +92,6 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
       return;
     }
     setEditing(!editing)
-    setEditing(!editing)
     confirmEditing();
   };
 
@@ -123,7 +121,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
               </td>
               <td>
                 <StandaloneSearchBox 
-                onLoad={onLoada} 
+                onLoad={onLoadSearchBoxA} 
                 onPlacesChanged={onPlacesChangedA}
                 >
                   <input placeholder='Saida'/>
@@ -131,7 +129,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
               </td>
               <td>
                 <StandaloneSearchBox 
-                onLoad={onLoadb} 
+                onLoad={onLoadSearchBoxB} 
                 onPlacesChanged={onPlacesExitChangedB}
                 >
                   <input placeholder='Destino'/>

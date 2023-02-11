@@ -6,10 +6,9 @@ import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
 
 interface IDetailsCard {
   currDelivery: DeliveryI | null;
-  traceRoute: () => void;
 }
 
-export default function DetailsCart({ currDelivery, traceRoute }: IDetailsCard) {
+export default function DetailsCart({ currDelivery }: IDetailsCard) {
   const { id }: any = useParams();
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
@@ -20,16 +19,15 @@ export default function DetailsCart({ currDelivery, traceRoute }: IDetailsCard) 
     <section>
       <h1>{ currDelivery?.client }</h1>
         <span>{ currDelivery?.deliveryDate.toLocaleString() }</span>
-        <button onClick={traceRoute}>
-          Traçar rota
-        </button>
       <nav>
         <button disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
           return currDe.id === Number(id);
           }) -1]} onClick={prev}>
           {'<'}
           </button>
-          <button disabled={Number(id) === deliverys.length} onClick={next}>
+          <button disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
+          return currDe.id === Number(id);
+          }) +1]} onClick={next}>
             {'>'}
           </button>
       </nav>
