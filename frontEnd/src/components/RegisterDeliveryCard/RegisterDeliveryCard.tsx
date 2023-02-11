@@ -84,10 +84,8 @@ export default function RegisterDeliveryCard() {
     if(validateClient(client) && validateDate(deliveryDate)
     && validateDestination(destinyCoordenate) && validateExit(exitCoordenate)) {
       setButtonDisabled(false);
-      console.log('abilitado');
     } else {
       setButtonDisabled(true);
-      console.log('desabilitado');
     };
   }, [client, destinyCoordenate, exitCoordenate, deliveryDate]);
 

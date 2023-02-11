@@ -12,7 +12,6 @@ export default class Get {
       });
       return deliverys;
     } catch(e: any) {
-      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }

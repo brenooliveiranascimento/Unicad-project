@@ -4,7 +4,6 @@ import statusCodes from "../../statusCode";
 import CustomError from "../../utils/StatusError";
 
 export default class GetController {
-
   async execute(_req: Request, res: Response) {
     try {
       const deliveryService = new Get();

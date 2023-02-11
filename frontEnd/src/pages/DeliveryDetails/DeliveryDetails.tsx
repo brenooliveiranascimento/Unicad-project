@@ -102,7 +102,6 @@ export default function DeliveryDetails() {
               }}
               zoom={15}
             >
-              
             {!route && departure && <Marker position={departure} />}
             {!route && destination && <Marker position={destination} />}
 
