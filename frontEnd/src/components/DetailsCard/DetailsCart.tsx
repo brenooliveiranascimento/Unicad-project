@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
+import { formatDate } from '../../utils/formatDate';
 
 interface IDetailsCard {
   currDelivery: DeliveryI | null;
@@ -18,7 +19,7 @@ export default function DetailsCart({ currDelivery }: IDetailsCard) {
   return (
     <section>
       <h1>{ currDelivery?.client }</h1>
-        <span>{ currDelivery?.deliveryDate.toLocaleString() }</span>
+      <span>{formatDate(currDelivery?.deliveryDate)}</span>
       <nav>
         <button disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
           return currDe.id === Number(id);

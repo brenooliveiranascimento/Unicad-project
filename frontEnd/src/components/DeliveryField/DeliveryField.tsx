@@ -5,6 +5,7 @@ import { DeliveryI, IEditingDelivery } from '../../interfaces/globalState/Delive
 import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
 import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
 import { editingDeliveryValues } from '../../utils/editingDelivery';
+import { formatDate } from '../../utils/formatDate';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -61,11 +62,6 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
     if(editing) return
     window.location.href = `/deliveryDetails/${currDelivery.id}`;
   };
-
-  let day = new Date(currDelivery.deliveryDate).getDate();
-  let month = new Date(currDelivery.deliveryDate).getMonth();
-  let year = new Date(currDelivery.deliveryDate).getFullYear();
-
 
   const confirmEditing = () => {
     dispatch(EditDelivery({
@@ -139,7 +135,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         )  : (
           <>
             <td>{currDelivery.client}</td>
-            <td>{`${day}/${month}/${year}`}</td>
+            <td>{formatDate(currDelivery?.deliveryDate)}</td>
             <td>{currDelivery.deliverysDestination.departureName}</td>
             <td>{currDelivery.deliverysDestination.destinyName}</td>
           </>

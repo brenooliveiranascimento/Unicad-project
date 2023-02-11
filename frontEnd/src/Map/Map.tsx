@@ -1,9 +1,6 @@
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { DeliveryI } from '../interfaces/globalState/DeliveryI';
-import GlobalStateI from '../interfaces/globalState/GlobalStateI';
 import { formatCoordenateDeparture, formatCoordenateDestination } from '../utils/formatCoordenates';
 
 interface IDeliveryFieldProps {

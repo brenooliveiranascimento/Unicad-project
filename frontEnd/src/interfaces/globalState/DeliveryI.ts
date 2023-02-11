@@ -27,7 +27,6 @@ export interface IEditingDelivery {
   id: number
 }
 
-
 export interface DeliveryI {
   id?: number;
   client: string;
