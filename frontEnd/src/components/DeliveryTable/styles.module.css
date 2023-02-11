@@ -36,10 +36,12 @@
   cursor: pointer;
 }
 
+.customers tbody tr td input {
+  border:  1px solid black;
+}
 
 .customers tbody tr:hover {
   color: #fff;
   filter: brightness(50%);
   transition: all 0.3s;
-  background-color: rgb(56, 56, 56);
 }
