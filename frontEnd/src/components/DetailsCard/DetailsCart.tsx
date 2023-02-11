@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
 import { formatDate } from '../../utils/formatDate';
+import DeliveryDetailField from '../DeliveryDetailField/DeliveryDetailField';
 import styles from './styles.module.css';
 
 interface IDetailsCard {
@@ -11,7 +12,7 @@ interface IDetailsCard {
 }
 
 export default function DetailsCart({ currDelivery }: IDetailsCard) {
-  const { id }: any = useParams();
+  const { id }: { id: string } = useParams();
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
   const next = () => window.location.href = `http://localhost:3000/deliveryDetails/${Number(id) + 1}`;
@@ -38,6 +39,16 @@ export default function DetailsCart({ currDelivery }: IDetailsCard) {
             }) +1]} onClick={next}>
               {'>'}
             </button>
+        </section>
+        <section className={styles.anothe_deliverys}>
+          <h2>
+            Outras entregas
+          </h2>
+          {
+            deliverys.map((delivery: DeliveryI) => (
+              <DeliveryDetailField delivery={delivery} />
+            ))
+          }
         </section>
       </section>
     </aside>
