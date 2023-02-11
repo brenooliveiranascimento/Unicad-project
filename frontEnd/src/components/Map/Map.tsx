@@ -1,7 +1,7 @@
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import React, { useEffect, useState } from 'react'
-import { DeliveryI } from '../interfaces/globalState/DeliveryI';
-import { formatCoordenateDeparture, formatCoordenateDestination } from '../utils/formatCoordenates';
+import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
+import { formatCoordenateDeparture, formatCoordenateDestination } from '../../utils/formatCoordenates';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -14,8 +14,8 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
   const [destination, setDestination] = useState<google.maps.LatLngLiteral>();
 
   const containerStyle = {
-    width: '600px',
-    height: '600px'
+    width: '100%',
+    height: '100%'
   };
 
   const traceRoute = () => {

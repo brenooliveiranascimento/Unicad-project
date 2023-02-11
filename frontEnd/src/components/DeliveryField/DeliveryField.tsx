@@ -75,7 +75,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   }
 
   return (
-    <tr key={currDelivery.id}>
+    <tr data-testid={`delivery-${currDelivery.id}`} key={currDelivery.id}>
       {
         editing ? (
           <>
@@ -134,6 +134,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
       </td>
       <td>
         <button
+          data-testid={`delete-${currDelivery.id}`}
           onClick={deleteDelivery}
         >{editing ? 'Cancelar' : (delet ? 'Confirmar' : 'Deletar')}</button>
       </td>

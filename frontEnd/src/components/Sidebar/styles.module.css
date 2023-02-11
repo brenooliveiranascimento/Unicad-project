@@ -1,7 +1,7 @@
 .aside_container {
-  width: 15rem;
+  width: 20rem;
   height: 100vh;
-  background-color: #312e4e;
+  background-color: #203246;
   color: #ddd;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,6 @@
   flex-direction: column;
   height: 80vh;
 }
-
 
 .aside_container a {
   color: #ddd;
