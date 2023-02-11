@@ -2,18 +2,19 @@ import { StandaloneSearchBox } from '@react-google-maps/api';
 import React, { useState } from 'react'
 
 interface IMapSearch {
-  setCoordenate: (coordenate: string) => void
+  setCoordenate: (coordenate: string) => void;
   setName: (name: string | undefined) => void;
+  role: string
 };
 
-export default function MapSearchBox({ setCoordenate, setName }: IMapSearch) {
+export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearch) {
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
 
-  const onLoadSearchBoxB = (ref: google.maps.places.SearchBox) => {
+  const onLoadSearchBox = (ref: google.maps.places.SearchBox) => {
     setSeartchBoxB(ref);
   };
 
-  const onPlacesExitChangedB = () => {
+  const onPlacesExitChanged = () => {
     const places = searchBoxB!.getPlaces();
     const place = places![0];
     const location = {
@@ -25,10 +26,10 @@ export default function MapSearchBox({ setCoordenate, setName }: IMapSearch) {
   };
   return (
     <StandaloneSearchBox
-    onLoad={onLoadSearchBoxB} 
-    onPlacesChanged={onPlacesExitChangedB}
+    onLoad={onLoadSearchBox} 
+    onPlacesChanged={onPlacesExitChanged}
     >
-      <input placeholder='Destino'/>
+      <input placeholder={role}/>
     </StandaloneSearchBox>
   )
 }

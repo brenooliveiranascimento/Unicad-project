@@ -7,13 +7,10 @@ import { CreateDeliverys } from '../../redux/actions/delivery/CreateDelivery';
 import { validateClient, validateDate, validateDestination, validateExit } from '../../utils/validateNewDeliveryProps';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
+import MapSearchBox from '../MapSearchBox/MapSearchBox';
 
 export default function RegisterDeliveryCard() {
-  const history = useHistory();
   const dispatch = useDispatch();
-
-  const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
-  const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
 
   const [exitCoordenate, setExitCoordenate] = useState('');
   const [destinyCoordenate, setDestinyCoordenate] = useState('');
@@ -26,38 +23,6 @@ export default function RegisterDeliveryCard() {
   const [error, setError] = useState('');
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  const onLoada = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxA(ref);
-  };
-
-  const onLoadb = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxB(ref);
-  };
-
-  const onPlacesChangedA = () => {
-    const places = searchBoxA!.getPlaces();
-    console.log(places)
-
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setExitCoordenate(`${location.lat} ${location.lng}`);
-    setExitName(place.formatted_address);
-  };
-
-  const onPlacesExitChangedB = () => {
-    const places = searchBoxB!.getPlaces();
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setDestinyCoordenate(`${location.lat} ${location.lng}`);
-    setDestinyName(place.formatted_address);
-  };
 
   const handleDate = (dateSelected: string) => {
     if(new Date(dateSelected) < new Date()) {
@@ -100,18 +65,16 @@ export default function RegisterDeliveryCard() {
             googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
             libraries={['places']}
           >
-            <StandaloneSearchBox 
-              onLoad={onLoada} 
-              onPlacesChanged={onPlacesChangedA}
-            >
-              <input className={styles.search_input} placeholder='Saida'/>
-            </StandaloneSearchBox>
-            <StandaloneSearchBox 
-              onLoad={onLoadb} 
-              onPlacesChanged={onPlacesExitChangedB}
-            >
-              <input className={styles.search_input} placeholder='Destino'/>
-            </StandaloneSearchBox>
+            <MapSearchBox
+              role='Saida'
+              setName={(name: string | undefined) => setExitName(name)}
+              setCoordenate={(coordenate: string) => setExitCoordenate(coordenate)}
+            />
+            <MapSearchBox
+              role='Destino'
+              setName={(name: string | undefined) => setDestinyName(name)}
+              setCoordenate={(coordenate: string) => setDestinyCoordenate(coordenate)}
+            />
           </LoadScript>
           <label>
             <span>Data de entrega</span>

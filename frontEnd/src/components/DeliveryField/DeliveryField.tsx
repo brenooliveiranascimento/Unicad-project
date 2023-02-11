@@ -84,12 +84,14 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
               </td>
               <td>
               <MapSearchBox
+                  role='Saida'
                   setName={(name: string | undefined) => setExitName(name)}
                   setCoordenate={(coordenate: string) => setExitCoordenate(coordenate)}
                 />
               </td>
               <td>
                 <MapSearchBox
+                  role='Destino'
                   setName={(name: string | undefined) => setDestinyName(name)}
                   setCoordenate={(coordenate: string) => setDestinyCoordenate(coordenate)}
                 />
