@@ -1,6 +1,7 @@
 import { StandaloneSearchBox } from '@react-google-maps/api';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { DeliveryI, IEditingDelivery } from '../../interfaces/globalState/DeliveryI';
 import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
 import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
@@ -34,6 +35,14 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
     dispatch(EditDelivery({
       ...editingDelivery, departureName: exitName, departureCoordenate: exitCoordenate, destinyCoordenate, destinyName      
     }));
+  };
+
+  const handleDate = (dateSelected: string) => {
+    if(new Date(dateSelected) < new Date()) {
+      toast.error('A data de entrega não pode ser menor que a data atual');
+      return
+    };
+    setEditingDelivery({...editingDelivery, deliveryDate: dateSelected})
   };
 
   const { client, deliveryDate, deliverysDestination: { 
@@ -78,7 +87,8 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
               </td>
               <td>
                 <input
-                  onChange={({target}) => setEditingDelivery({...editingDelivery, deliveryDate: target.value})}
+                  value={editingDelivery.deliveryDate}
+                  onChange={({target}) => handleDate(target.value)}
                   type={'date'}
                 />
               </td>

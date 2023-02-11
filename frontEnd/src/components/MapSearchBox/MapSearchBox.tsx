@@ -26,8 +26,8 @@ export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearc
   };
   return (
     <StandaloneSearchBox
-    onLoad={onLoadSearchBox} 
-    onPlacesChanged={onPlacesExitChanged}
+      onLoad={onLoadSearchBox} 
+      onPlacesChanged={onPlacesExitChanged}
     >
       <input placeholder={role}/>
     </StandaloneSearchBox>
