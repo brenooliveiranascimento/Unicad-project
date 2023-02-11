@@ -41,7 +41,7 @@
 }
 
 .customers tbody tr:hover {
-  color: #DDD;
+  color: rgb(84, 84, 84);
   filter: brightness(80%);
   transition: all 0.3s;
 }

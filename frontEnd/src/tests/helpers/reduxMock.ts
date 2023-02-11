@@ -3,7 +3,7 @@ export const reduxState = {
     deliverys: [
       {
         id: 11,
-        client: 'Breno Nascimento',
+        client: 'Ciclano',
         deliveryDate: '2023-04-20T00:00:00.000Z',
         deliverysDestination: {
           id: 11,
@@ -16,7 +16,7 @@ export const reduxState = {
       },
       {
         id: 13,
-        client: 'Breno Nascimento',
+        client: 'Fulano de tal',
         deliveryDate: '2026-11-11T00:00:00.000Z',
         deliverysDestination: {
           id: 13,

@@ -66,33 +66,33 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
 
   return (
     <LoadScript
-            googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
-            libraries={['places']}
-          >
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={{
-                lat: formatCoordenateDeparture(0, currDelivery),
-                lng: formatCoordenateDeparture(1, currDelivery),
-              }}
-              zoom={15}
-            >
-            {!route && departure && <Marker position={departure} />}
-            {!route && destination && <Marker position={destination} />}
+      googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
+      libraries={['places']}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={{
+          lat: formatCoordenateDeparture(0, currDelivery),
+          lng: formatCoordenateDeparture(1, currDelivery),
+        }}
+        zoom={15}
+      >
+      {!route && departure && <Marker position={departure} />}
+      {!route && destination && <Marker position={destination} />}
 
-              {departure && destination && (
-                <DirectionsService
-                  options={directionsServiceOptions} 
-                  callback={directionsCallback}
-                />
-              )}
+        {departure && destination && (
+          <DirectionsService
+            options={directionsServiceOptions} 
+            callback={directionsCallback}
+          />
+        )}
 
-              {route && (
-                <DirectionsRenderer
-                  options={directionsRendererOptions}
-                />
-              )}
-            </GoogleMap>
-          </LoadScript>
+        {route && (
+          <DirectionsRenderer
+            options={directionsRendererOptions}
+          />
+        )}
+      </GoogleMap>
+    </LoadScript>
   )
 }

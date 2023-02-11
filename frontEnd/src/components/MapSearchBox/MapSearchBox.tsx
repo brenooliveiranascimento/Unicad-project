@@ -11,6 +11,7 @@ export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearc
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
 
   const onLoadSearchBox = (ref: google.maps.places.SearchBox) => {
+    console.log(ref)
     setSeartchBoxB(ref);
   };
 
