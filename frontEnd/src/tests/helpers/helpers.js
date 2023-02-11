@@ -6,7 +6,6 @@ import { applyMiddleware, createStore } from 'redux';
 import { render } from '@testing-library/react';
 import thunk from 'redux-thunk';
 import rootReducer from '../../redux/modules/rootReducer';
-import { LoadScript } from '@react-google-maps/api';
 
 function withRouter(component, history) {
   return (
