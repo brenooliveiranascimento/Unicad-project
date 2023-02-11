@@ -27,6 +27,5 @@ button {
 }
 
 button:hover {
-  filter: brightness(50%);
   transition: all 0.5s;
 }

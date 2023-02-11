@@ -14,6 +14,17 @@ export interface NewDeliveryBodyRequest {
   destinyCoordenate: string;
   departureName: string;
   destinyName: string;
+  id?: number
+}
+
+export interface IEditingDelivery {
+  client: string | undefined;
+  deliveryDate: string | undefined;
+  departureCoordenate: string | undefined;
+  destinyCoordenate: string | undefined;
+  departureName: string | undefined;
+  destinyName: string | undefined;
+  id: number
 }
 
 export interface DeliveryI {

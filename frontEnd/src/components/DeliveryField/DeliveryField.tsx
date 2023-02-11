@@ -1,6 +1,12 @@
 import { StandaloneSearchBox } from '@react-google-maps/api';
 import React, { useState } from 'react'
-import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
+import { useDispatch } from 'react-redux';
+import { DeliveryI, IEditingDelivery } from '../../interfaces/globalState/DeliveryI';
+import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
+import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
+import { editingDeliveryValues } from '../../utils/editingDelivery';
+import { formatDate } from '../../utils/formatDate';
+import MapSearchBox from '../MapSearchBox/MapSearchBox';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -8,8 +14,10 @@ interface IDeliveryFieldProps {
 
 export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [editing, setEditing] = useState(false);
-  const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
-  const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
+  const [delet, setDelet] = useState(false);
+  const [editingDelivery, setEditingDelivery] = useState<IEditingDelivery>(editingDeliveryValues);
+
+  const dispatch = useDispatch();
 
   const [exitCoordenate, setExitCoordenate] = useState('');
   const [destinyCoordenate, setDestinyCoordenate] = useState('');
@@ -17,52 +25,45 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [exitName, setExitName] = useState<any>('');
   const [destinyName, setDestinyName] = useState<any>('');
 
-  const onLoada = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxA(ref);
-  };
-
-  const onLoadb = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxB(ref);
-  };
-
-  const onPlacesChangedA = () => {
-    const places = searchBoxA!.getPlaces();
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setExitCoordenate(`${location.lat} ${location.lng}`);
-    setExitName(place.formatted_address);
-  };
-
-  const onPlacesExitChangedB = () => {
-    const places = searchBoxB!.getPlaces();
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setDestinyCoordenate(`${location.lat} ${location.lng}`);
-    setDestinyName(place.formatted_address);
-  };
-
-
   const handleDelivery = () => {
     if(editing) return
     window.location.href = `/deliveryDetails/${currDelivery.id}`;
   };
 
-  let day = new Date(currDelivery.deliveryDate).getDate();
-  let month = new Date(currDelivery.deliveryDate).getMonth();
-  let year = new Date(currDelivery.deliveryDate).getFullYear();
+  const confirmEditing = () => {
+    dispatch(EditDelivery({
+      ...editingDelivery, departureName: exitName, departureCoordenate: exitCoordenate, destinyCoordenate, destinyName      
+    }));
+  };
 
-  const [currEditing, setCurrEditng] = useState<DeliveryI | null>();
+  const { client, deliveryDate, deliverysDestination: { 
+    departureCoordenate, departureName, destinyCoordenate: currDesCoordenate,
+    destinyName: currDestinyName }, id } = currDelivery;
 
   const handleEditing = () => {
-    setCurrEditng(currDelivery);
+    if(!editing) {
+      setEditing(true)
+      setEditingDelivery({
+        client,
+        deliveryDate: deliveryDate.toString(),
+        departureName,
+        departureCoordenate,
+        destinyCoordenate: currDesCoordenate,
+        destinyName: currDestinyName,
+        id: Number(id)
+      });
+      return;
+    }
     setEditing(!editing)
+    confirmEditing();
   };
+
+  const deleteDelivery = () => {
+    if(editing)return setEditing(false);
+    if(!delet) return setDelet(!delet);
+    dispatch(DeleteDeliverys(currDelivery));
+    setDelet(!delet);
+  }
 
   return (
     <tr key={currDelivery.id}>
@@ -70,32 +71,36 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         editing ? (
           <>
               <td>
-                <input value={currEditing?.client} />
+                <input
+                  onChange={({target}) => setEditingDelivery({...editingDelivery, client: target.value})}
+                  value={editingDelivery?.client}
+                />
               </td>
               <td>
-                <input type={'date'} />
+                <input
+                  onChange={({target}) => setEditingDelivery({...editingDelivery, deliveryDate: target.value})}
+                  type={'date'}
+                />
               </td>
               <td>
-                <StandaloneSearchBox 
-                onLoad={onLoada} 
-                onPlacesChanged={onPlacesChangedA}
-                >
-                  <input placeholder='Saida'/>
-                </StandaloneSearchBox>
+              <MapSearchBox
+                  role='Saida'
+                  setName={(name: string | undefined) => setExitName(name)}
+                  setCoordenate={(coordenate: string) => setExitCoordenate(coordenate)}
+                />
               </td>
               <td>
-                <StandaloneSearchBox 
-                onLoad={onLoadb} 
-                onPlacesChanged={onPlacesExitChangedB}
-                >
-                  <input placeholder='Destino'/>
-                </StandaloneSearchBox>
+                <MapSearchBox
+                  role='Destino'
+                  setName={(name: string | undefined) => setDestinyName(name)}
+                  setCoordenate={(coordenate: string) => setDestinyCoordenate(coordenate)}
+                />
               </td>
           </>
         )  : (
           <>
             <td>{currDelivery.client}</td>
-            <td>{`${day}/${month}/${year}`}</td>
+            <td>{formatDate(currDelivery?.deliveryDate)}</td>
             <td>{currDelivery.deliverysDestination.departureName}</td>
             <td>{currDelivery.deliverysDestination.destinyName}</td>
           </>
@@ -108,7 +113,9 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         <button onClick={handleEditing}>{editing ? 'Salvar' : 'Editar'}</button>
       </td>
       <td>
-        <button>{editing ? 'Cancelar' : 'Deletar'}</button>
+        <button
+          onClick={deleteDelivery}
+        >{editing ? 'Cancelar' : (delet ? 'Confirmar' : 'Deletar')}</button>
       </td>
     </tr>
   )

@@ -50,7 +50,7 @@ describe('Test in Service of Delivery', () => {
     sinon.stub(DeliveryModel, 'findByPk').resolves(fulanoUnitMock as DeliveryModel);
     sinon.stub(DeliveryModel, 'destroy').resolves();
 
-    expect(delivery.execute(1)).resolves.deep.equal('Delivery delected with success!');
+    expect(delivery.execute(1)).resolves.deep.equal(true);
   });
 
   it('Delete a delivery that does not exist', () => {

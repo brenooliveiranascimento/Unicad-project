@@ -20,7 +20,7 @@ export default class UpdateController {
       if(typeof updated == 'string') {
         return res.status(statusCodes.OK).json({ message: updated });
       }
-      return res.status(statusCodes.OK).json({ message: 'Atualizado com sucesso!' });
+      return res.status(statusCodes.OK).json({ message: updated.props });
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }

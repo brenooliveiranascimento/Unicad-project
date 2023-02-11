@@ -18,7 +18,7 @@ export default function delivery(
             .filter((delivery: DeliveryI) => delivery.id !== action.payload.id), loading: false };
       case DeliveryTypes.UPDATE_DELIVERY:
         return { ...state, deliverys: state.deliverys.map((delivery: DeliveryI) => {
-              if(delivery.id === action.payload.id) return action.payload.id;
+              if(delivery.id === action.payload.id) return action.payload;
               return delivery }), loading: false};
       default:
         return state;

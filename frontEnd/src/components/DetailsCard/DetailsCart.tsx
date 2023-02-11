@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
+import { formatDate } from '../../utils/formatDate';
 
 interface IDetailsCard {
   currDelivery: DeliveryI | null;
-  traceRoute: () => void;
 }
 
-export default function DetailsCart({ currDelivery, traceRoute }: IDetailsCard) {
+export default function DetailsCart({ currDelivery }: IDetailsCard) {
   const { id }: any = useParams();
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
@@ -19,17 +19,16 @@ export default function DetailsCart({ currDelivery, traceRoute }: IDetailsCard) 
   return (
     <section>
       <h1>{ currDelivery?.client }</h1>
-        <span>{ currDelivery?.deliveryDate.toLocaleString() }</span>
-        <button onClick={traceRoute}>
-          Traçar rota
-        </button>
+      <span>{formatDate(currDelivery?.deliveryDate)}</span>
       <nav>
         <button disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
           return currDe.id === Number(id);
           }) -1]} onClick={prev}>
           {'<'}
           </button>
-          <button disabled={Number(id) === deliverys.length} onClick={next}>
+          <button disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
+          return currDe.id === Number(id);
+          }) +1]} onClick={next}>
             {'>'}
           </button>
       </nav>
