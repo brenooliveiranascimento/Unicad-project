@@ -1,8 +1,10 @@
 import { StandaloneSearchBox } from '@react-google-maps/api';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
+import { DeliveryI, IEditingDelivery } from '../../interfaces/globalState/DeliveryI';
 import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
+import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
+import { editingDeliveryValues } from '../../utils/editingDelivery';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -13,6 +15,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [delet, setDelet] = useState(false);
   const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
+  const [editingDelivery, setEditingDelivery] = useState<IEditingDelivery>(editingDeliveryValues);
 
   const dispatch = useDispatch();
 
@@ -32,6 +35,8 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
 
   const onPlacesChangedA = () => {
     const places = searchBoxA!.getPlaces();
+    console.log(places)
+
     const place = places![0];
     const location = {
       lat: place?.geometry?.location?.lat() || 0,
@@ -62,11 +67,34 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   let month = new Date(currDelivery.deliveryDate).getMonth();
   let year = new Date(currDelivery.deliveryDate).getFullYear();
 
-  const [currEditing, setCurrEditng] = useState<DeliveryI | null>();
+
+  const confirmEditing = () => {
+    dispatch(EditDelivery({
+      ...editingDelivery, departureName: exitName, departureCoordenate: exitCoordenate, destinyCoordenate, destinyName      
+    }));
+  };
+
+  const { client, deliveryDate, deliverysDestination: { 
+    departureCoordenate, departureName, destinyCoordenate: currDesCoordenate,
+    destinyName: currDestinyName }, id } = currDelivery;
 
   const handleEditing = () => {
-    setCurrEditng(currDelivery);
+    if(!editing) {
+      setEditing(true)
+      setEditingDelivery({
+        client,
+        deliveryDate: deliveryDate.toString(),
+        departureName,
+        departureCoordenate,
+        destinyCoordenate: currDesCoordenate,
+        destinyName: currDestinyName,
+        id: Number(id)
+      });
+      return;
+    }
     setEditing(!editing)
+    setEditing(!editing)
+    confirmEditing();
   };
 
   const deleteDelivery = () => {
@@ -82,10 +110,16 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         editing ? (
           <>
               <td>
-                <input value={currEditing?.client} />
+                <input
+                  onChange={({target}) => setEditingDelivery({...editingDelivery, client: target.value})}
+                  value={editingDelivery?.client}
+                />
               </td>
               <td>
-                <input type={'date'} />
+                <input
+                  onChange={({target}) => setEditingDelivery({...editingDelivery, deliveryDate: target.value})}
+                  type={'date'}
+                />
               </td>
               <td>
                 <StandaloneSearchBox 
