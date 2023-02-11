@@ -1,8 +1,10 @@
 .aside_container {
-  width: 40rem;
+  width: 35rem;
   height: 100vh;
-  padding: 1rem;
   background-color: #fff;
+  padding-bottom: 0rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
