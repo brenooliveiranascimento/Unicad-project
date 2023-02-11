@@ -6,6 +6,7 @@ import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
 import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
 import { editingDeliveryValues } from '../../utils/editingDelivery';
 import { formatDate } from '../../utils/formatDate';
+import MapSearchBox from '../MapSearchBox/MapSearchBox';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -14,8 +15,6 @@ interface IDeliveryFieldProps {
 export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [editing, setEditing] = useState(false);
   const [delet, setDelet] = useState(false);
-  const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
-  const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
   const [editingDelivery, setEditingDelivery] = useState<IEditingDelivery>(editingDeliveryValues);
 
   const dispatch = useDispatch();
@@ -25,38 +24,6 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   
   const [exitName, setExitName] = useState<any>('');
   const [destinyName, setDestinyName] = useState<any>('');
-
-  const onLoadSearchBoxA = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxA(ref);
-  };
-
-  const onLoadSearchBoxB = (ref: google.maps.places.SearchBox) => {
-    setSeartchBoxB(ref);
-  };
-
-  const onPlacesChangedA = () => {
-    const places = searchBoxA!.getPlaces();
-
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setExitCoordenate(`${location.lat} ${location.lng}`);
-    setExitName(place.formatted_address);
-  };
-
-  const onPlacesExitChangedB = () => {
-    const places = searchBoxB!.getPlaces();
-    const place = places![0];
-    const location = {
-      lat: place?.geometry?.location?.lat() || 0,
-      lng: place?.geometry?.location?.lng() || 0,
-    };
-    setDestinyCoordenate(`${location.lat} ${location.lng}`);
-    setDestinyName(place.formatted_address);
-  };
-
 
   const handleDelivery = () => {
     if(editing) return
@@ -116,20 +83,16 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
                 />
               </td>
               <td>
-                <StandaloneSearchBox 
-                onLoad={onLoadSearchBoxA} 
-                onPlacesChanged={onPlacesChangedA}
-                >
-                  <input placeholder='Saida'/>
-                </StandaloneSearchBox>
+              <MapSearchBox
+                  setName={(name: string | undefined) => setExitName(name)}
+                  setCoordenate={(coordenate: string) => setExitCoordenate(coordenate)}
+                />
               </td>
               <td>
-                <StandaloneSearchBox 
-                onLoad={onLoadSearchBoxB} 
-                onPlacesChanged={onPlacesExitChangedB}
-                >
-                  <input placeholder='Destino'/>
-                </StandaloneSearchBox>
+                <MapSearchBox
+                  setName={(name: string | undefined) => setDestinyName(name)}
+                  setCoordenate={(coordenate: string) => setDestinyCoordenate(coordenate)}
+                />
               </td>
           </>
         )  : (
