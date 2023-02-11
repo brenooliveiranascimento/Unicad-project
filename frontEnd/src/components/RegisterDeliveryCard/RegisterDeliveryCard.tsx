@@ -3,7 +3,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import 'react-calendar/dist/Calendar.css';
 import { useDispatch } from 'react-redux';
-import { CreateDeliverys } from '../../redux/actions/delivery/Create';
+import { CreateDeliverys } from '../../redux/actions/delivery/CreateDelivery';
 import { validateClient, validateDate, validateDestination, validateExit } from '../../utils/validateNewDeliveryProps';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';

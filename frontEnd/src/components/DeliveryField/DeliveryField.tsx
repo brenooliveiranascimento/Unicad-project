@@ -1,6 +1,8 @@
 import { StandaloneSearchBox } from '@react-google-maps/api';
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
+import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -8,8 +10,11 @@ interface IDeliveryFieldProps {
 
 export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   const [editing, setEditing] = useState(false);
+  const [delet, setDelet] = useState(false);
   const [searchBoxA, setSeartchBoxA] = useState<google.maps.places.SearchBox>();
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
+
+  const dispatch = useDispatch();
 
   const [exitCoordenate, setExitCoordenate] = useState('');
   const [destinyCoordenate, setDestinyCoordenate] = useState('');
@@ -64,6 +69,13 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
     setEditing(!editing)
   };
 
+  const deleteDelivery = () => {
+    if(editing)return setEditing(false);
+    if(!delet) return setDelet(!delet);
+    dispatch(DeleteDeliverys(currDelivery));
+    setDelet(!delet);
+  }
+
   return (
     <tr key={currDelivery.id}>
       {
@@ -108,7 +120,9 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         <button onClick={handleEditing}>{editing ? 'Salvar' : 'Editar'}</button>
       </td>
       <td>
-        <button>{editing ? 'Cancelar' : 'Deletar'}</button>
+        <button
+          onClick={deleteDelivery}
+        >{editing ? 'Cancelar' : (delet ? 'Confirmar' : 'Deletar')}</button>
       </td>
     </tr>
   )

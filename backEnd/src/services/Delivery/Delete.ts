@@ -4,12 +4,12 @@ import statusCodes from "../../statusCode";
 import CustomError from "../../utils/StatusError";
 
 export default class Delete {
-  async execute(id: number): Promise<string> {
+  async execute(id: number): Promise<string | boolean> {
     try {
       const checkExist = await Delivery.getById(id);
       if(checkExist) {
         await DeliveryModel.destroy({ where: { id } });
-        return 'Delivery delected with success!';
+        return true;
       } else {
         return 'Delivery dont exist';
       }

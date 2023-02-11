@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
-import { GetDeliverys } from '../../redux/actions/delivery/Get';
+import { GetDeliverys } from '../../redux/actions/delivery/GetDeliverys';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import { useHistory, useParams } from 'react-router-dom';
 import { formatCoordenateDeparture, formatCoordenateDestination } from '../../utils/formatCoordenates';

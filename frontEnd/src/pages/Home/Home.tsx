@@ -6,7 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import UseFetch from '../../customHooks/UseFetch';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
-import { GetDeliverys } from '../../redux/actions/delivery/Get';
+import { GetDeliverys } from '../../redux/actions/delivery/GetDeliverys';
 import styles from './styles.module.css';
 
 export default function Home() {
