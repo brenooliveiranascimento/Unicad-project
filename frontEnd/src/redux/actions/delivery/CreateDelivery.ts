@@ -13,7 +13,6 @@ export const CreateDeliverys = (newDelivery: NewDeliveryBodyRequest): any => {
       toast.success('Entrega agendada com sucesso!');
       dispatch(genericAction(DeliveryTypes.CREATE_DELIVERY, message));
     } catch(e: any) {
-      console.log(e);
       toast.error('Erro ao cadastrar')
     }
   };

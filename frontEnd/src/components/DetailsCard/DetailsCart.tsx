@@ -46,7 +46,7 @@ export default function DetailsCart({ currDelivery }: IDetailsCard) {
           </h2>
           {
             deliverys.map((delivery: DeliveryI) => (
-              <DeliveryDetailField delivery={delivery} />
+              <DeliveryDetailField key={delivery.id} delivery={delivery} />
             ))
           }
         </section>

@@ -1,5 +1,5 @@
 .aside_container {
-  width: 20rem;
+  width: 13rem;
   height: 100vh;
   background-color: #203246;
   color: #ddd;
@@ -13,11 +13,12 @@
   display: flex;
   flex-direction: column;
   height: 80vh;
+  padding: 1rem;
 }
 
 .aside_container a {
   color: #ddd;
   text-decoration: none;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   margin-bottom: 2rem;
 }

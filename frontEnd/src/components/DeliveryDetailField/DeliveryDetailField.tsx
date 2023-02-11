@@ -21,8 +21,7 @@ export default function DeliveryDetailField({ delivery }: IDeliveryDetailsField)
         backgroundColor: Number(id) === delivery.id ? '#335276' : '#477fc0'
       }}
     onClick={goDelivery}>
-      <span>{ delivery.client }</span>
-      <span>{ formatDate(delivery?.deliveryDate.toString()) }</span>
+      <span>{ delivery.client }: { formatDate(delivery?.deliveryDate.toString()) }</span>
     </button>
   )
 }

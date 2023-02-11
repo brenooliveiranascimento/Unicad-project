@@ -14,7 +14,6 @@ export default class Delivery {
     Object.keys(delivery).forEach((
       currProp: keyof DeliveryPropsInterface | any) => {
       if(!delivery[currProp]) {
-        console.log(`${currProp} é um valor inválido`);
         throw new CustomError(
           `${currProp} é um valor inválido`, statusCodes.BAD_REQUEST
           );

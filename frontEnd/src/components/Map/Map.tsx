@@ -30,7 +30,6 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
           lng: formatCoordenateDeparture(1, currDelivery)
         });
       }
-      console.log(departure, destination)
   }
 
   const directionsServiceOptions =
@@ -52,7 +51,6 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
       setNoResults(true);
     } else {
       setNoResults(true);
-      console.log(res);
     }
   }, []);
 

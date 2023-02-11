@@ -19,7 +19,6 @@ export default class RegisterController {
 
       res.status(statusCodes.CREATED).json({ message: register.props });
     } catch(e: any) {
-      console.log(e)
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }

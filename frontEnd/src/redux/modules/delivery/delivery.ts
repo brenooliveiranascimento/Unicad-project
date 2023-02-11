@@ -5,7 +5,6 @@ import { deliveryInitialActionValue, deliveryInitialState } from "./initialState
 export default function delivery(
   state = deliveryInitialState, action = deliveryInitialActionValue
   ) {
-    console.log(action)
     switch(action.type) {
       case DeliveryTypes.SELECT_A_DELIVERY:
         return { ...state, currDelivery: action.payload };
