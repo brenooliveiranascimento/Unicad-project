@@ -7,7 +7,7 @@ import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import {  useParams } from "react-router-dom";
 import Map from "../../components/Map/Map";
-import DetailsCard from "../../components/DetailsCard/DetailsCard";
+import DetailsCard from "../../components/DetailsCard/Index";
 
 export default function DeliveryDetails() {
 

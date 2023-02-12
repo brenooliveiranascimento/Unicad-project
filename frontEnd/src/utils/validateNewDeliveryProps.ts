@@ -1,4 +1,4 @@
-const MIN_CLIENT_CHARACTER = 6;
+const MIN_CLIENT_CHARACTER = 4;
 
 export const validateClient = (client: string) =>  client.length >= MIN_CLIENT_CHARACTER;
 
