@@ -16,7 +16,6 @@ export default function DeliveryDetails() {
   const dispatch = useDispatch();
 
   const { id }: any = useParams();
-
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
   const handleDelivery = () => {

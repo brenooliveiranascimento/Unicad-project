@@ -28,7 +28,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
 
   const handleDelivery = () => {
     if(editing) return;
-    window.location.href = `/deliveryDetails/${currDelivery.id}`;
+    window.location.href = `/deliveryDetails/${currDelivery.id}/DRIVING`;
   };
 
   const confirmEditing = () => {
