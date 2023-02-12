@@ -69,6 +69,7 @@
 .customers tbody tr td input {
   border:  1px solid black;
   padding: 10px;
+  width: 200px;
   font-size: 1.2rem;
   background-color: #2a4460;
   color: white;
