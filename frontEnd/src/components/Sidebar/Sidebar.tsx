@@ -8,7 +8,6 @@ import unicarLogo from "../../images/unicadLogo.jpeg";
 export default function Sidebar() {
   const history = useHistory();
   const currPath = history.location.pathname;
-
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
   return (
@@ -38,7 +37,7 @@ export default function Sidebar() {
           style={{
             color: currPath.split("/")[1] === "deliveryDetails" ? "#aaa" : "#fff"
           }}
-          href={`/deliveryDetails/${deliverys[0]?.id}`}
+          href={`/deliveryDetails/${deliverys[0]?.id}/DRIVING`}
         >
           <AiOutlineEnvironment /> Detalhes
         </a>

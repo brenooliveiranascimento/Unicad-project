@@ -1,13 +1,9 @@
 import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
 import App from "../App";
-import {createMemoryHistory} from "history";
 import { renderWithRouterAndRedux } from "./helpers/helpers";
 import { reduxState } from "./helpers/reduxMock";
-import { LoadScript } from "@react-google-maps/api";
 import NewDelivery from "../pages/NewDelivery/NewDelivery";
-import { act } from "react-dom/test-utils";
-import axios from "axios";
 
 describe("Test if on home screen", () => {
   it("Renders the delivery table", async () => {
