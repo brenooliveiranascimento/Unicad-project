@@ -28,9 +28,9 @@
 
    
 ## Testes
-- Para execurar os testes no backEnd nacegue até o mesmo com "cd backEnd"
+- Para execurar os testes no backEnd navegue até o o diretório raiz de backEnd
 - Execute o comendo "npm run test:unit"
-- Para execurar os testes no frontEnd nacegue até o mesmo com "cd frontEnd"
+- Para execurar os testes no frontEnd o diretório raiz de frontEnd.
 - Execute o comendo "npm run test"
 
 <div>
