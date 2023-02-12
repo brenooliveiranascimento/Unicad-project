@@ -2,7 +2,33 @@
   width: 80%;
   height: 80vh;
   overflow-y: scroll;
+  background-color: rgb(178, 178, 178);
+  border-radius: 1rem;
   padding: 1rem;
+}
+
+.table_container h1 {
+  font-size: 2rem;
+  background-color: #203246;
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.table_container::-webkit-scrollbar {
+  width: 1px;
+}
+
+.table_container::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+.table_container::-webkit-scrollbar-thumb {
+  background: rgb(77, 77, 77);
+}
+
+.table_container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .customers {
@@ -10,6 +36,10 @@
   border-collapse: collapse;
   width: 100%;
 };
+
+.customers tr{
+  border-radius: 1rem;
+}
 
 .customers td, .customers th {
   border: 1px solid #ddd;
