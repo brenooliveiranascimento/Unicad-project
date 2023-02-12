@@ -36,12 +36,8 @@ export default function DeliveryDetails() {
 			<DetailsCart currDelivery={currDelivery}/>
 			<section className={styles.main_delivery_card_container} >
 				{
-					currDelivery && (
-						<Map
-							currDelivery={currDelivery}
-							setNoResults={(result: boolean) => setNoResults(result)}
-						/>
-					) 
+					currDelivery && 
+					( <Map currDelivery={currDelivery} setNoResults={(result: boolean) => setNoResults(result)} /> ) 
 				}
 				{noReults && <h1>Nenhuma rota encontrada</h1>}
 			</section>
