@@ -24,6 +24,7 @@ export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearc
     setCoordenate(`${location.lat} ${location.lng}`);
     setName(place.formatted_address);
   };
+  
   return (
     <StandaloneSearchBox
       onLoad={onLoadSearchBox} 

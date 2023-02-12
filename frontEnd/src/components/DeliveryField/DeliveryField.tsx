@@ -33,7 +33,11 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
 
   const confirmEditing = () => {
     dispatch(EditDelivery({
-      ...editingDelivery, departureName: exitName, departureCoordenate: exitCoordenate, destinyCoordenate, destinyName      
+      ...editingDelivery,
+      departureName: exitName,
+      departureCoordenate: exitCoordenate,
+      destinyCoordenate,
+      destinyName      
     }));
   };
 

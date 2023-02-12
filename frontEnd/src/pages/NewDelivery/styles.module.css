@@ -32,20 +32,23 @@
 
 .new_delivery_container button {
   margin-top: 2rem;
-  background-color: #4C4C74;
+  background-color: #245183;
   border: none;
   color: white;
   padding: 1.2rem;
   font-size: 1.4rem;
 }
 
+.new_delivery_container button:disabled {
+  background-color: #0e2034;
+}
+
 .new_delivery_container input {
-  background-color: #4C4C74;
   color: white;
 }
 
 .new_delivery_container input {
-  background-color: #4C4C74;
+  background-color: #1c3f66;
   width: 400px;
   height: 2rem;
   font-size: 1.2rem;

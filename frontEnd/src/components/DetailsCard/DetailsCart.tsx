@@ -15,8 +15,19 @@ export default function DetailsCart({ currDelivery }: IDetailsCard) {
   const { id }: { id: string } = useParams();
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
-  const next = () => window.location.href = `http://localhost:3000/deliveryDetails/${Number(id) + 1}`;
-  const prev = () => window.location.href = `http://localhost:3000/deliveryDetails/${Number(id) - 1}`;
+  const findDeliveryIndex = () => deliverys.findIndex((currDe: DeliveryI) => {
+    return currDe.id === Number(id);
+  })
+
+  const nextDelivery = () => {
+    const nextDelivery = deliverys[findDeliveryIndex() + 1].id;
+    window.location.href = `http://localhost:3000/deliveryDetails/${nextDelivery}`;
+  }
+  
+  const prevDelivery = () => {
+    const prevDelivery = deliverys[findDeliveryIndex() - 1].id;
+    window.location.href = `http://localhost:3000/deliveryDetails/${prevDelivery}`
+  };
 
   return (
     <aside className={styles.aside_container}>
@@ -27,18 +38,17 @@ export default function DetailsCart({ currDelivery }: IDetailsCard) {
       <span>Saida: <strong>{currDelivery?.deliverysDestination.departureName}</strong></span>
       <span>Destino: <strong>{currDelivery?.deliverysDestination.destinyName}</strong></span>
         <section className={styles.btn_area}>
-          <button className={styles.next_prev_btn} disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
-            return currDe.id === Number(id);
-            }) -1]} onClick={prev}>
+          <button
+            className={styles.next_prev_btn} disabled={!deliverys[findDeliveryIndex() -1]}
+            onClick={prevDelivery}
+          >
             {'<'}
-            </button>
-            <button
-              className={styles.next_prev_btn}
-              disabled={!deliverys[deliverys.findIndex((currDe: DeliveryI) => {
-            return currDe.id === Number(id);
-            }) +1]} onClick={next}>
-              {'>'}
-            </button>
+          </button>
+          <button
+            className={styles.next_prev_btn}
+            disabled={!deliverys[findDeliveryIndex() +1]} onClick={nextDelivery}>
+            {'>'}
+          </button>
         </section>
         <section className={styles.anothe_deliverys}>
           <h2>
