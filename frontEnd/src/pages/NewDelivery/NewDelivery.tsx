@@ -13,6 +13,7 @@ export default function NewDelivery() {
 	useEffect(() => {
 		dispatch(GetDeliverys());
 	}, []);
+	
 	return (
 		<main className={styles.new_delivery_container} >
 			<Sidebar/>
