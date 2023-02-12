@@ -37,7 +37,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
       departureName: exitName,
       departureCoordenate: exitCoordenate,
       destinyCoordenate,
-      destinyName      
+      destinyName
     }));
   };
 
@@ -54,6 +54,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
     destinyName: currDestinyName }, id } = currDelivery;
 
   const handleEditing = () => {
+    if(delet) return setDelet(false);
     if(!editing) {
       setEditing(true);
       setEditingDelivery({
@@ -134,7 +135,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
         <button onClick={handleDelivery}>Detalhes</button>
       </td>
       <td>
-        <button onClick={handleEditing}>{editing ? "Salvar" : "Editar"}</button>
+        <button onClick={handleEditing}>{delet ? "Cancelar" : (editing ? "Salvar" : "Editar")}</button>
       </td>
       <td>
         <button
