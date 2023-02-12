@@ -1,0 +1,30 @@
+.aside_container {
+  width: 13rem;
+  height: 100vh;
+  background-color: #203246;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 4rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    padding: 1rem;
+  }
+
+  a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+}

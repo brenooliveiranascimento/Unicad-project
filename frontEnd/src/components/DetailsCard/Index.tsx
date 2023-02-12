@@ -4,7 +4,7 @@ import { formatDate } from "../../utils/formatDate";
 import AllTravelsList from "./AllTravelsList";
 import HandleDelivery from "./HandleDelivery";
 import HandleTravelMode from "./HandleTravelMode";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 interface IDetailsCard {
   currDelivery: DeliveryI | null;

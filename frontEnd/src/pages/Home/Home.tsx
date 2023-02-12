@@ -4,7 +4,7 @@ import DeliveryTable from "../../components/DeliveryTable/DeliveryTable";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function Home() {
 

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import DeliveryDetailField from "../DeliveryDetailField/DeliveryDetailField";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function AllTravelsList() {
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);

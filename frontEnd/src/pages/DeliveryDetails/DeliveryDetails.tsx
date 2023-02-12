@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import DeliveryField from "../DeliveryField/DeliveryField";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function DeliveryTable() {
 

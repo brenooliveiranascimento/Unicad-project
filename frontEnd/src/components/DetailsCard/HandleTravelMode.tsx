@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { backendConnection } from "../../utils/backendConnectionEndpoint";
 import { ITravelModes, travelModes } from "../../utils/travelModes";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function HandleTravelMode() {
   const { id, travelMode }: { id: string, travelMode: string } = useParams();
