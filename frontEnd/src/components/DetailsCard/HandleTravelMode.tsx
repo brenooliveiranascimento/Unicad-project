@@ -8,7 +8,7 @@ export default function HandleTravelMode() {
   const { id, travelMode }: { id: string, travelMode: string } = useParams();
 
   const handleTravelMode = (travelModeSelected: string) => {
-    window.location.href = `${backendConnection.url}/${id}/${travelModeSelected}`;
+    window.location.href = `${backendConnection.pageUrl}/${id}/${travelModeSelected}`;
   };
 
   return (
