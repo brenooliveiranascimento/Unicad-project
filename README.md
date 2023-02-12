@@ -33,7 +33,6 @@
 - Para execurar os testes no frontEnd nacegue até o mesmo com "cd frontEnd"
 - Execute o comendo "npm run test"
 
-Tecnologias utilizadas:<br/>
 <div>
 <h2>Tecnologias Utilizadas<h2>
 <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/> 
