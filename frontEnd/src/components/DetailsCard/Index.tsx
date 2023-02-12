@@ -20,8 +20,8 @@ export default function DetailsCard({ currDelivery }: IDetailsCard) {
         <span>Data da entrega <strong>{formatDate(currDelivery?.deliveryDate)}</strong></span>
         <span>Saida: <strong>{currDelivery?.deliverysDestination.departureName}</strong></span>
         <span>Destino: <strong>{currDelivery?.deliverysDestination.destinyName}</strong></span>
-        <HandleDelivery />
         <HandleTravelMode />
+        <HandleDelivery />
         <AllTravelsList />
       </section>
     </aside>
