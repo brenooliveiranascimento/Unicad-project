@@ -1,3 +1,3 @@
 export const backendConnection = {
-  url: "http://localhost:3000/deliveryDetails"
+  url: "https://unicad-project-production.up.railway.app"
 };
