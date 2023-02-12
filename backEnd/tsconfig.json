@@ -11,6 +11,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include":["src/**/*", "src/index.ts"], /* aqui estamos incluindo todos os arquivos dentro da pasta src */
-  "exclude": ["node_modules", "**/*.spec.ts"] /* aqui estamos excluindo a pasta node_modules e os arquivos de teste */
+  "include":["src/**/*", "src/index.ts"], 
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
