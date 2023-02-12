@@ -43,6 +43,7 @@ React.useMemo<google.maps.DirectionsRequest>(() => {
 }, [departure, destination]);
 
   // @ts-ignore
+  //DirectionsServiceProps
   const directionsCallback = React.useCallback((res) => {
     if (res !== null && res.status === "OK") {
       setNoResults(false);

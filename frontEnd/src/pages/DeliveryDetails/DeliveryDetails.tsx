@@ -12,7 +12,6 @@ import DetailsCard from "../../components/DetailsCard/DetailsCard";
 export default function DeliveryDetails() {
 
   const [noReults, setNoResults] = useState(false);
-  const [currDelivery, setCurrDelivery] = useState<DeliveryI | null>(null);
 
   const dispatch = useDispatch();
 
@@ -21,8 +20,7 @@ export default function DeliveryDetails() {
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
   const handleDelivery = () => {
-    const findDelivery = deliverys.find((delivery: DeliveryI) => delivery.id === Number(id)) as DeliveryI;
-    setCurrDelivery(findDelivery);
+    return deliverys.find((delivery: DeliveryI) => delivery.id === Number(id)) as DeliveryI;
   };
 
   useEffect(() => {
@@ -33,12 +31,12 @@ export default function DeliveryDetails() {
   return (
     <main className={styles.home_container}>
       <Sidebar/>
-      <DetailsCard currDelivery={currDelivery}/>
+      <DetailsCard currDelivery={handleDelivery()}/>
       <section className={styles.main_delivery_card_container} >
         {
-          currDelivery && (
+          handleDelivery() && (
             <Map
-              currDelivery={currDelivery}
+              currDelivery={handleDelivery()}
               setNoResults={(result: boolean) => setNoResults(result)}
             />
           ) 
