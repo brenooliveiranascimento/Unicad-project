@@ -4,6 +4,7 @@ import DeliveryTable from "../../components/DeliveryTable/DeliveryTable";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";
+import LoadingPage from "../LoadingPage/LoadingPage";
 import styles from "./styles.module.css";
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
     <main className={styles.home_container}>
       <Sidebar/>
       <section className={styles.main_delivery_card_container} >
-        { loading ? <h1>Loading</h1> : <DeliveryTable /> }
+        { loading ? <LoadingPage/>: <DeliveryTable /> }
       </section>
     </main>
   );
