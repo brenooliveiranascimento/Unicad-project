@@ -22,9 +22,9 @@
 ## Inicializando banco de dados
 - Com o container do mysql rodando navegue até o diretorio e execute o comento "npm run db:reset"
 
-<img src="https://user-images.githubusercontent.com/94801880/218288079-f89906f5-1fc2-41a6-9674-3c8dfc11c13c.png" width=800>
-<img src="https://user-images.githubusercontent.com/94801880/218288078-38328b8b-0e55-4277-8691-d19f0cfe7933.png" width=800>
-<img src="https://user-images.githubusercontent.com/94801880/218288076-08aa2847-562c-4a62-a292-83a581e4dc02.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/218319487-c0c3008d-9155-4fa7-95fd-dec7f1ce9a8e.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/218319482-dd7495ec-083c-4081-847a-060d8c700668.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/218319486-a85d85fb-bf2d-47e4-b2cc-bea311227d76.png" width=800>
 
    
 ## Testes
