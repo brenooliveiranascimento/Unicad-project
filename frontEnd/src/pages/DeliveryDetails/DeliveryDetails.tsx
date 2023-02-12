@@ -7,7 +7,7 @@ import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import {  useParams } from "react-router-dom";
 import Map from "../../components/Map/Map";
-import DetailsCart from "../../components/DetailsCard/DetailsCart";
+import DetailsCard from "../../components/DetailsCard/DetailsCard";
 
 export default function DeliveryDetails() {
 
@@ -33,7 +33,7 @@ export default function DeliveryDetails() {
   return (
     <main className={styles.home_container}>
       <Sidebar/>
-      <DetailsCart currDelivery={currDelivery}/>
+      <DetailsCard currDelivery={currDelivery}/>
       <section className={styles.main_delivery_card_container} >
         {
           currDelivery && (

@@ -11,7 +11,7 @@ interface IDetailsCard {
   currDelivery: DeliveryI | null;
 }
 
-export default function DetailsCart({ currDelivery }: IDetailsCard) {
+export default function DetailsCard({ currDelivery }: IDetailsCard) {
   const { id }: { id: string } = useParams();
   const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
