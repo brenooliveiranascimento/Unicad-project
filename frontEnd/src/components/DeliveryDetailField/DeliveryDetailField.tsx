@@ -9,19 +9,19 @@ interface IDeliveryDetailsField {
 
 export default function DeliveryDetailField({ delivery }: IDeliveryDetailsField) {
 
-	const { id }: { id: string } = useParams();
+  const { id }: { id: string } = useParams();
 
-	const goDelivery = () => {
-		window.location.href = `http://localhost:3000/deliveryDetails/${Number(delivery.id)}`;
-	};
+  const goDelivery = () => {
+    window.location.href = `http://localhost:3000/deliveryDetails/${Number(delivery.id)}`;
+  };
 
-	return (
-		<button
-			style={{
-				backgroundColor: Number(id) === delivery.id ? "#335276" : "#477fc0"
-			}}
-			onClick={goDelivery}>
-			<span>{ delivery.client }: { formatDate(delivery?.deliveryDate.toString()) }</span>
-		</button>
-	);
+  return (
+    <button
+      style={{
+        backgroundColor: Number(id) === delivery.id ? "#335276" : "#477fc0"
+      }}
+      onClick={goDelivery}>
+      <span>{ delivery.client }: { formatDate(delivery?.deliveryDate.toString()) }</span>
+    </button>
+  );
 }

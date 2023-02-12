@@ -8,22 +8,22 @@ import styles from "./styles.module.css";
 
 export default function Home() {
 
-	const {
-		loading
-	} = useSelector(({ deliverys }: GlobalStateI) => deliverys);
+  const {
+    loading
+  } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(GetDeliverys());
-	}, []);
+  useEffect(() => {
+    dispatch(GetDeliverys());
+  }, []);
 
-	return (
-		<main className={styles.home_container}>
-			<Sidebar/>
-			<section className={styles.main_delivery_card_container} >
-				{ loading ? <h1>Loading</h1> : <DeliveryTable /> }
-			</section>
-		</main>
-	);
+  return (
+    <main className={styles.home_container}>
+      <Sidebar/>
+      <section className={styles.main_delivery_card_container} >
+        { loading ? <h1>Loading</h1> : <DeliveryTable /> }
+      </section>
+    </main>
+  );
 }

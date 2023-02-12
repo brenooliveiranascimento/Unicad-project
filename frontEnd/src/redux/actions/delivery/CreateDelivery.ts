@@ -6,14 +6,14 @@ import { DeliveryTypes } from "../acionTypes";
 import { genericAction } from "../genericAction";
 
 export const CreateDeliverys = (newDelivery: NewDeliveryBodyRequest): any => {
-	return async (dispatch: Dispatch<any>) => {
-		try {
-			const { data: { message } } = await connection
-				.post("delivery/create", { ...newDelivery });
-			toast.success("Entrega agendada com sucesso!");
-			dispatch(genericAction(DeliveryTypes.CREATE_DELIVERY, message));
-		} catch(e: any) {
-			toast.error("Erro ao cadastrar");
-		}
-	};
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      const { data: { message } } = await connection
+        .post("delivery/create", { ...newDelivery });
+      toast.success("Entrega agendada com sucesso!");
+      dispatch(genericAction(DeliveryTypes.CREATE_DELIVERY, message));
+    } catch(e: any) {
+      toast.error("Erro ao cadastrar");
+    }
+  };
 };

@@ -1,11 +1,11 @@
-import { StandaloneSearchBox } from '@react-google-maps/api';
-import React, { useState } from 'react'
+import { StandaloneSearchBox } from "@react-google-maps/api";
+import React, { useState } from "react";
 
 interface IMapSearch {
   setCoordenate: (coordenate: string) => void;
   setName: (name: string | undefined) => void;
   role: string
-};
+}
 
 export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearch) {
   const [searchBoxB, setSeartchBoxB] = useState<google.maps.places.SearchBox>();
@@ -32,5 +32,5 @@ export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearc
     >
       <input placeholder={role}/>
     </StandaloneSearchBox>
-  )
+  );
 }

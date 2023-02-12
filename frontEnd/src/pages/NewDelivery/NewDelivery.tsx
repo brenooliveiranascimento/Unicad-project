@@ -8,17 +8,17 @@ import { GetDeliverys } from "../../redux/actions/delivery/GetDeliverys";
 import { useDispatch } from "react-redux";
 
 export default function NewDelivery() {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(GetDeliverys());
-	}, []);
-	return (
-		<main className={styles.new_delivery_container} >
-			<Sidebar/>
-			<section className={styles.main_delivery_card_container}>
-				<RegisterDeliveryCard />
-			</section>
-		</main>
-	);
+  useEffect(() => {
+    dispatch(GetDeliverys());
+  }, []);
+  return (
+    <main className={styles.new_delivery_container} >
+      <Sidebar/>
+      <section className={styles.main_delivery_card_container}>
+        <RegisterDeliveryCard />
+      </section>
+    </main>
+  );
 }
