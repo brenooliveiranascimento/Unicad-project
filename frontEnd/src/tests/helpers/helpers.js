@@ -8,56 +8,56 @@ import thunk from "redux-thunk";
 import rootReducer from "../../redux/modules/rootReducer";
 
 function withRouter(component, history) {
-	return (
-		<Router history={ history }>
-			{ component }
-		</Router>
-	);
+  return (
+    <Router history={ history }>
+      { component }
+    </Router>
+  );
 }
 
 function withRedux(component, store) {
-	return (
-		<Provider store={ store }>
-			{ component }
-		</Provider>
-	);
+  return (
+    <Provider store={ store }>
+      { component }
+    </Provider>
+  );
 }
 
 export function renderWithRouter(
-	component,
-	{
-		initialPath = "/",
-		history = createMemoryHistory([initialPath]),
-	} = {},
+  component,
+  {
+    initialPath = "/",
+    history = createMemoryHistory([initialPath]),
+  } = {},
 ) {
-	return {
-		...render(withRouter(component, history)),
-		history,
-	};
+  return {
+    ...render(withRouter(component, history)),
+    history,
+  };
 }
 
 export function renderWithRedux(component, options = {}) {
-	const {
-		initialState,
-		store = initialState
-			? createStore(rootReducer, initialState, applyMiddleware(thunk))
-			: createStore(rootReducer, applyMiddleware(thunk)),
-	} = options;
+  const {
+    initialState,
+    store = initialState
+      ? createStore(rootReducer, initialState, applyMiddleware(thunk))
+      : createStore(rootReducer, applyMiddleware(thunk)),
+  } = options;
 
-	return {
-		...render(withRedux(component, store)),
-		store,
-	};
+  return {
+    ...render(withRedux(component, store)),
+    store,
+  };
 }
 
 export function renderWithRouterAndRedux(component, options = {}) {
-	const {
-		initialPath = "/",
-		history = createMemoryHistory([initialPath]),
-	} = options;
+  const {
+    initialPath = "/",
+    history = createMemoryHistory([initialPath]),
+  } = options;
 
-	return {
-		...renderWithRedux(withRouter(component, history), options),
-		history,
-	};
+  return {
+    ...renderWithRedux(withRouter(component, history), options),
+    history,
+  };
 }
