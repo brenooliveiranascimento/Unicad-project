@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from "react";
 import { toast } from "react-toastify";
 import { DeliveryI } from "../../../interfaces/globalState/DeliveryI";
