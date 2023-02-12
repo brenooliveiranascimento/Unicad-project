@@ -5,7 +5,7 @@ export interface DestinationsI {
   departureName: string;
   destinyName: string;
   deliveryId?: number;
-};
+}
 
 export interface NewDeliveryBodyRequest {
   client: string;

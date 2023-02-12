@@ -1,42 +1,42 @@
-import { LoadScript } from '@react-google-maps/api';
-import { useSelector } from 'react-redux'
-import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
-import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
-import DeliveryField from '../DeliveryField/DeliveryField';
-import styles from './styles.module.css'
+import React from "react";
+import { useSelector } from "react-redux";
+import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
+import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
+import DeliveryField from "../DeliveryField/DeliveryField";
+import styles from "./styles.module.css";
 
 export default function DeliveryTable() {
 
-  const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
+	const { deliverys } = useSelector(({ deliverys }: GlobalStateI) => deliverys);
 
-  return (
-    <section className={styles.table_container}>
-        <h2>
+	return (
+		<section className={styles.table_container}>
+			<h2>
           Unicad Delivery
-        </h2>
-        <h1>
+			</h2>
+			<h1>
           Número de entregas: { deliverys.length }
-        </h1>
-        <table className={styles.customers}>
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Data</th>
-              <th>Saida</th>
-              <th>Destino</th>
-              <th>Detalhes</th>
-              <th>Editar</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              deliverys.map((currDelivery: DeliveryI) => (
-                <DeliveryField key={currDelivery.id} currDelivery={currDelivery} />
-              ))
-            }
-            </tbody>
-      </table>
-    </section>
-  )
+			</h1>
+			<table className={styles.customers}>
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th>Data</th>
+						<th>Saida</th>
+						<th>Destino</th>
+						<th>Detalhes</th>
+						<th>Editar</th>
+						<th>Deletar</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						deliverys.map((currDelivery: DeliveryI) => (
+							<DeliveryField key={currDelivery.id} currDelivery={currDelivery} />
+						))
+					}
+				</tbody>
+			</table>
+		</section>
+	);
 }

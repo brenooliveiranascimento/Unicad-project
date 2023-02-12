@@ -6,6 +6,9 @@ services:
       - 3000:3000
     platform: linux/x86_64
     working_dir: /app/unicad-frontend
+    environment:
+      - GOOGLE_API_KEY=AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k
+      - BACKEND_CONNECTION_ENDPOINT=http://localhost:3001
     volumes:
       - ./frontEnd:/app/unicad-frontend
     depends_on:
