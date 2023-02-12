@@ -6,9 +6,8 @@ import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
 import { GetDeliverys } from '../../redux/actions/delivery/GetDeliverys';
 import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
 import {  useParams } from 'react-router-dom';
+import Map from '../../components/Map/Map';
 import DetailsCart from '../../components/DetailsCard/DetailsCart';
-import Map from '../../Map/Map';
-import { deliveryDefaultValur } from '../../utils/deliveryDefaultValue';
 
 export default function DeliveryDetails() {
 
@@ -34,14 +33,17 @@ export default function DeliveryDetails() {
   return (
     <main className={styles.home_container}>
       <Sidebar/>
+      <DetailsCart currDelivery={currDelivery}/>
       <section className={styles.main_delivery_card_container} >
           {
             currDelivery && (
-              <Map currDelivery={currDelivery} setNoResults={(result: boolean) => setNoResults(result)}/>
+              <Map
+                currDelivery={currDelivery}
+                setNoResults={(result: boolean) => setNoResults(result)}
+              />
             ) 
           }
           {noReults && <h1>Nenhuma rota encontrada</h1>}
-          <DetailsCart currDelivery={currDelivery} />
       </section>
     </main>
 )

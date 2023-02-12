@@ -1,6 +1,7 @@
-import { StandaloneSearchBox } from '@react-google-maps/api';
+import { LoadScript, StandaloneSearchBox, useJsApiLoader } from '@react-google-maps/api';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { DeliveryI, IEditingDelivery } from '../../interfaces/globalState/DeliveryI';
 import { DeleteDeliverys } from '../../redux/actions/delivery/DeleteDelivery';
 import { EditDelivery } from '../../redux/actions/delivery/EditDelivery';
@@ -32,8 +33,20 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
 
   const confirmEditing = () => {
     dispatch(EditDelivery({
-      ...editingDelivery, departureName: exitName, departureCoordenate: exitCoordenate, destinyCoordenate, destinyName      
+      ...editingDelivery,
+      departureName: exitName,
+      departureCoordenate: exitCoordenate,
+      destinyCoordenate,
+      destinyName      
     }));
+  };
+
+  const handleDate = (dateSelected: string) => {
+    if(new Date(dateSelected) < new Date()) {
+      toast.error('A data de entrega não pode ser menor que a data atual');
+      return
+    };
+    setEditingDelivery({...editingDelivery, deliveryDate: dateSelected})
   };
 
   const { client, deliveryDate, deliverysDestination: { 
@@ -66,36 +79,47 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
   }
 
   return (
-    <tr key={currDelivery.id}>
+    <tr data-testid={`delivery-${currDelivery.id}`} key={currDelivery.id}>
       {
         editing ? (
           <>
-              <td>
-                <input
-                  onChange={({target}) => setEditingDelivery({...editingDelivery, client: target.value})}
-                  value={editingDelivery?.client}
-                />
-              </td>
-              <td>
-                <input
-                  onChange={({target}) => setEditingDelivery({...editingDelivery, deliveryDate: target.value})}
-                  type={'date'}
-                />
-              </td>
-              <td>
-              <MapSearchBox
+            <td>
+              <input
+                onChange={({target}) => setEditingDelivery({...editingDelivery, client: target.value})}
+                value={editingDelivery?.client}
+              />
+            </td>
+            <td>
+              <input
+                value={editingDelivery.deliveryDate}
+                onChange={({target}) => handleDate(target.value)}
+                type={'date'}
+              />
+            </td>
+            <td>
+              <LoadScript
+              googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
+              libraries={['places']}
+              >
+                <MapSearchBox
                   role='Saida'
                   setName={(name: string | undefined) => setExitName(name)}
                   setCoordenate={(coordenate: string) => setExitCoordenate(coordenate)}
                 />
-              </td>
-              <td>
+              </LoadScript>
+            </td>
+            <td>
+              <LoadScript
+              googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
+              libraries={['places']}
+              >
                 <MapSearchBox
                   role='Destino'
                   setName={(name: string | undefined) => setDestinyName(name)}
                   setCoordenate={(coordenate: string) => setDestinyCoordenate(coordenate)}
                 />
-              </td>
+              </LoadScript>
+            </td>
           </>
         )  : (
           <>
@@ -114,6 +138,7 @@ export default function DeliveryField({ currDelivery }: IDeliveryFieldProps) {
       </td>
       <td>
         <button
+          data-testid={`delete-${currDelivery.id}`}
           onClick={deleteDelivery}
         >{editing ? 'Cancelar' : (delet ? 'Confirmar' : 'Deletar')}</button>
       </td>

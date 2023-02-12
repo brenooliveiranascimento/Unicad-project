@@ -12,12 +12,10 @@ export const EditDelivery = (delivery: IEditingDelivery): any => {
       const { data: { message } } = await connection
         .put(`delivery/update/${delivery.id}`, delivery);
       toast.success('Entrega agendada com sucesso!');
-      console.log(message);
       dispatch(genericAction(DeliveryTypes.UPDATE_DELIVERY,
         { client, deliveryDate, deliverysDestination: { departureName, destinyCoordenate, destinyName, departureCoordenate }, id }
         ));
     } catch(e: any) {
-      console.log(e);
       toast.error('Erro ao cadastrar')
     }
   };

@@ -1,4 +1,4 @@
-import { DeliveryIState } from "../../../interfaces/globalState/DeliveryI";
+import { DeliveryIState } from "../interfaces/globalState/DeliveryI";
 
 export const deliveryInitialState: DeliveryIState = {
   deliverys: [],

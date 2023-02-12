@@ -1,7 +1,7 @@
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import React, { useEffect, useState } from 'react'
-import { DeliveryI } from '../interfaces/globalState/DeliveryI';
-import { formatCoordenateDeparture, formatCoordenateDestination } from '../utils/formatCoordenates';
+import { DeliveryI } from '../../interfaces/globalState/DeliveryI';
+import { formatCoordenateDeparture, formatCoordenateDestination } from '../../utils/formatCoordenates';
 
 interface IDeliveryFieldProps {
   currDelivery: DeliveryI;
@@ -14,8 +14,8 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
   const [destination, setDestination] = useState<google.maps.LatLngLiteral>();
 
   const containerStyle = {
-    width: '600px',
-    height: '600px'
+    width: '100%',
+    height: '100%'
   };
 
   const traceRoute = () => {
@@ -30,7 +30,6 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
           lng: formatCoordenateDeparture(1, currDelivery)
         });
       }
-      console.log(departure, destination)
   }
 
   const directionsServiceOptions =
@@ -52,7 +51,6 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
       setNoResults(true);
     } else {
       setNoResults(true);
-      console.log(res);
     }
   }, []);
 
@@ -66,33 +64,33 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
 
   return (
     <LoadScript
-            googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
-            libraries={['places']}
-          >
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={{
-                lat: formatCoordenateDeparture(0, currDelivery),
-                lng: formatCoordenateDeparture(1, currDelivery),
-              }}
-              zoom={15}
-            >
-            {!route && departure && <Marker position={departure} />}
-            {!route && destination && <Marker position={destination} />}
+      googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
+      libraries={['places']}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={{
+          lat: formatCoordenateDeparture(0, currDelivery),
+          lng: formatCoordenateDeparture(1, currDelivery),
+        }}
+        zoom={15}
+      >
+      {!route && departure && <Marker position={departure} />}
+      {!route && destination && <Marker position={destination} />}
 
-              {departure && destination && (
-                <DirectionsService
-                  options={directionsServiceOptions} 
-                  callback={directionsCallback}
-                />
-              )}
+        {departure && destination && (
+          <DirectionsService
+            options={directionsServiceOptions} 
+            callback={directionsCallback}
+          />
+        )}
 
-              {route && (
-                <DirectionsRenderer
-                  options={directionsRendererOptions}
-                />
-              )}
-            </GoogleMap>
-          </LoadScript>
+        {route && (
+          <DirectionsRenderer
+            options={directionsRendererOptions}
+          />
+        )}
+      </GoogleMap>
+    </LoadScript>
   )
 }

@@ -11,10 +11,7 @@ export default function DeliveryTable() {
 
   return (
     <section className={styles.table_container}>
-      <LoadScript
-        googleMapsApiKey='AIzaSyDrAGiZgxfTandddrIDtqnVK6UXqgoWp1k'
-        libraries={['places']}
-      >
+
         <table className={styles.customers}>
           <thead>
             <tr>
@@ -23,19 +20,18 @@ export default function DeliveryTable() {
               <th>Saida</th>
               <th>Destino</th>
               <th>Detalhes</th>
+              <th>Editar</th>
               <th>Deletar</th>
-              <th>Atualizar</th>
             </tr>
           </thead>
-        <tbody>
-          {
-            deliverys.map((currDelivery: DeliveryI) => (
-              <DeliveryField key={currDelivery.id} currDelivery={currDelivery} />
-            ))
-          }
-        </tbody>
+          <tbody>
+            {
+              deliverys.map((currDelivery: DeliveryI) => (
+                <DeliveryField key={currDelivery.id} currDelivery={currDelivery} />
+              ))
+            }
+            </tbody>
       </table>
-    </LoadScript>
     </section>
   )
 }

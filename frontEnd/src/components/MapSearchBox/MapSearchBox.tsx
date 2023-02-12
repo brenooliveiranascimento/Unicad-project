@@ -24,10 +24,11 @@ export default function MapSearchBox({ setCoordenate, setName, role }: IMapSearc
     setCoordenate(`${location.lat} ${location.lng}`);
     setName(place.formatted_address);
   };
+  
   return (
     <StandaloneSearchBox
-    onLoad={onLoadSearchBox} 
-    onPlacesChanged={onPlacesExitChanged}
+      onLoad={onLoadSearchBox} 
+      onPlacesChanged={onPlacesExitChanged}
     >
       <input placeholder={role}/>
     </StandaloneSearchBox>

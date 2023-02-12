@@ -1,11 +1,10 @@
 import { DeliveryI } from "../../../interfaces/globalState/DeliveryI";
 import { DeliveryTypes } from "../../actions/acionTypes";
-import { deliveryInitialActionValue, deliveryInitialState } from "./initialState";
+import { deliveryInitialActionValue, deliveryInitialState } from "../../../utils/initialState";
 
 export default function delivery(
   state = deliveryInitialState, action = deliveryInitialActionValue
   ) {
-    console.log(action)
     switch(action.type) {
       case DeliveryTypes.SELECT_A_DELIVERY:
         return { ...state, currDelivery: action.payload };

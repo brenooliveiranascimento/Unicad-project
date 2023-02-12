@@ -14,7 +14,6 @@ export default class Delete {
         return 'Delivery dont exist';
       }
     } catch(e: any) {
-      console.log(e);
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }
