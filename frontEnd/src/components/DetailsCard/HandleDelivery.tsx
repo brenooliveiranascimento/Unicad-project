@@ -16,12 +16,12 @@ export default function HandleDelivery() {
 
   const nextDelivery = () => {
     const nextDelivery = deliverys[findDeliveryIndex() + 1].id;
-    window.location.href = `${backendConnection.pageUrl}/${nextDelivery}/${travelMode}`;
+    window.location.href = `${backendConnection.pageUrl}/deliveryDetails/${nextDelivery}/${travelMode}`;
   };
   
   const prevDelivery = () => {
     const prevDelivery = deliverys[findDeliveryIndex() - 1].id;
-    window.location.href = `${backendConnection.pageUrl}/${prevDelivery}/${travelMode}`;
+    window.location.href = `${backendConnection.pageUrl}/deliveryDetails/${prevDelivery}/${travelMode}`;
   };
   return (
     <section className={styles.btn_area}>
