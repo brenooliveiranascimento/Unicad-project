@@ -3,7 +3,7 @@ import { AiFillHome, AiOutlineBars, AiOutlineEdit, AiOutlineEnvironment } from "
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import GlobalStateI from '../../interfaces/globalState/GlobalStateI';
-
+import unicarLogo from '../../images/unicadLogo.jpeg'
 export default function Sidebar() {
   const history = useHistory();
   const currPath = history.location.pathname;
@@ -13,6 +13,10 @@ export default function Sidebar() {
   return (
     <aside className={styles.aside_container}>
       <nav>
+        <img
+          src={unicarLogo}
+          alt='unicad-logo'
+        />
         <a
           style={{
             color: currPath === '/' ? '#aaa' : '#fff'

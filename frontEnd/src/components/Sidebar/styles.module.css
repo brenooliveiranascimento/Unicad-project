@@ -9,6 +9,12 @@
   justify-content: center;
 }
 
+.aside_container img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 4rem;
+}
+
 .aside_container nav {
   display: flex;
   flex-direction: column;

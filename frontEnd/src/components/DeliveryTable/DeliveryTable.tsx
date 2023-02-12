@@ -11,7 +11,12 @@ export default function DeliveryTable() {
 
   return (
     <section className={styles.table_container}>
-
+        <h2>
+          Unicad Delivery
+        </h2>
+        <h1>
+          Número de entregas: { deliverys.length }
+        </h1>
         <table className={styles.customers}>
           <thead>
             <tr>
