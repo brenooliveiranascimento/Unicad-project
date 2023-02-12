@@ -1,5 +1,6 @@
 import { DirectionsRenderer, DirectionsService, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import { formatCoordenateDeparture, formatCoordenateDestination } from "../../utils/formatCoordenates";
 
@@ -17,6 +18,7 @@ export default function Map({ currDelivery, setNoResults }: IDeliveryFieldProps)
     width: "100%",
     height: "100%"
   };
+  const { travelMode }: { travelMode: string } = useParams();
 
   const traceRoute = () => {
     if(currDelivery?.deliverysDestination.departureCoordenate &&
@@ -38,7 +40,7 @@ React.useMemo<google.maps.DirectionsRequest>(() => {
   return {
     origin: departure,
     destination,
-    travelMode: "DRIVING",
+    travelMode: travelMode,
   };
 }, [departure, destination]);
 

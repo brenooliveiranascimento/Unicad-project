@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
+import { backendConnection } from "../../utils/backendConnectionEndpoint";
 import { formatDate } from "../../utils/formatDate";
 
 interface IDeliveryDetailsField {
@@ -9,10 +10,10 @@ interface IDeliveryDetailsField {
 
 export default function DeliveryDetailField({ delivery }: IDeliveryDetailsField) {
 
-  const { id }: { id: string } = useParams();
+  const { id, travelMode }: { id: string, travelMode: string } = useParams();
 
   const goDelivery = () => {
-    window.location.href = `http://localhost:3000/deliveryDetails/${Number(delivery.id)}`;
+    window.location.href = `${backendConnection.url}/${Number(delivery.id)}/${travelMode}`;
   };
 
   return (
