@@ -13,7 +13,7 @@ export default function DeliveryDetailField({ delivery }: IDeliveryDetailsField)
   const { id, travelMode }: { id: string, travelMode: string } = useParams();
 
   const goDelivery = () => {
-    window.location.href = `${backendConnection.url}/${Number(delivery.id)}/${travelMode}`;
+    window.location.href = `${backendConnection.pageUrl}/${Number(delivery.id)}/${travelMode}`;
   };
 
   return (
