@@ -22,6 +22,10 @@
 ## Inicializando banco de dados
 - Com o container do mysql rodando navegue até o diretorio e execute o comento "npm run db:reset"
 
+<img src="https://user-images.githubusercontent.com/94801880/218288079-f89906f5-1fc2-41a6-9674-3c8dfc11c13c.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/218288078-38328b8b-0e55-4277-8691-d19f0cfe7933.png" width=800>
+<img src=https://user-images.githubusercontent.com/94801880/218288076-08aa2847-562c-4a62-a292-83a581e4dc02.png" width=800>
+
    
 ## Testes
 - Para execurar os testes no backEnd nacegue até o mesmo com "cd backEnd"
