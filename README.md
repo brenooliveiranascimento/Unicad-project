@@ -9,14 +9,24 @@
   ## <a target="_blank" href="https://unicad-project.vercel.app/">Aplicação</a>
   
 ## Para rodar o projeto em sua máquina
-- Clone o repositório com o comando "git clone git@github.com:brenooliveiranascimento/desafio-front.git"
+- Clone o repositório com o comando "git clone git@github.com:brenooliveiranascimento/Unicad-project.git"
 - Navegue até o diretorio frontend com o comando "cd frontEnd"
 - Execute o comando "npm i" ou se preferir utilizar o yarn com "yarn"
 - Agora Navegue até o diretorio backEnd com o comando "cd ../backEnd"
 - Execute o comando "npm i" ou se preferir utilizar o yarn com "yarn"
 - [EXECUÇÃO COM DOCKER] Volte para o diretorio raiz onde possui o docker-compose com "cd .." e execute "docker-compose up --build"
+- [EXECUÇÃO COM DOCKER] Logo depois de inicializar o projeto, navegue até backEnd e execute npm run db:reset para executar o script
+  que executa os comandos do do sequelize para inicializar as migrations e seeders e startar o banco de dados.
 - [EXECUÇÃO SEM DOCKER] Permaneça no diretorio frontend e execute "npm start"
 - [EXECUÇÃO SEM DOCKER] Navegue até backEnd com "cd../backEnd" "npm run dev"
+- [EXECUÇÃO SEM DOCKER] Configura as variaveis de hambiente seguindo o seguinte padrão
+- MYSQLDATABASE=Unicad
+- MYSQLHOST=localhost
+- MYSQLPASSWORD=senhaDoDB
+- MYSQLUSER=root
+- MYSQLPORT=3306
+- PORT=3001
+- Lembre se de rodando um servidor sql.
 - Por padrão o o front estará rodando na porta 3000 então acesse a url "http://localhost:3000/" dentro do seu navegador
 - Por padrão o back éstará rodando na porta 3001
 
