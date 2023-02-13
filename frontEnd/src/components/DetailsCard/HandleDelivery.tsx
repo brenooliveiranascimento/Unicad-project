@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { DeliveryI } from "../../interfaces/globalState/DeliveryI";
 import GlobalStateI from "../../interfaces/globalState/GlobalStateI";
 import { backendConnection } from "../../utils/backendConnectionEndpoint";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default function HandleDelivery() {
   const { id, travelMode }: { id: string, travelMode: string } = useParams();

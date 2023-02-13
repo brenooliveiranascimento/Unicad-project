@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { AiOutlineBars, AiOutlineEdit, AiOutlineEnvironment } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";

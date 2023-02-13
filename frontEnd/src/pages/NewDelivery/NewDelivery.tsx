@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import "react-calendar/dist/Calendar.css";
 import RegisterDeliveryCard from "../../components/RegisterDeliveryCard/RegisterDeliveryCard";
 import Sidebar from "../../components/Sidebar/Sidebar";

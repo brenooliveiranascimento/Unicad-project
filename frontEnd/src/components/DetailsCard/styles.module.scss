@@ -9,11 +9,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.aside_container h1 {
-  font-size: 2rem;
-  margin-top: 0rem;
+  h1 {
+    font-size: 2rem;
+    margin-top: 0rem;
+  }
+  
 }
 
 .aside_limit {
@@ -21,9 +21,6 @@
   width: 100%;
   flex-direction: column;
   height: 80vh;
-}
-
-.aside_limit {
   font-size: 1.2rem;
   line-height: 1.5rem;
   margin-top: 1rem;
@@ -61,30 +58,28 @@
   align-items: flex-start;
   height: auto;
   padding-top: 1rem;
-}
 
-.travel_mode_container h1 {
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-}
+  h1 {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
 
-.travel_mode_container button {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  justify-content: flex-start;
-  padding: 0.5rem;
-  background-color: #28405d;
-  border: none;
-  margin-bottom: 0.5rem;
-  color: white;
+  button {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    background-color: #28405d;
+    border: none;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  button:hover {
+    background-color: #172535;
+  }
 }
-
-.travel_mode_container button:hover {
-  background-color: #172535;
-}
-
 
 .anothe_deliverys {
   width: 100%;
@@ -99,22 +94,22 @@
   margin-top: 2rem;
   max-height: 100%;
   overflow-y: scroll;
-}
 
-.anothe_deliverys button {
-  width: 90%;
-  display: flex;
-  padding: 0.3rem;
-  background-color: #477fc0;
-  border: none;
-  margin: 0.3rem;
-  color: white;
-  font-size: 1rem;
-  font-size: 1rem;
-}
+  button {
+    width: 90%;
+    display: flex;
+    padding: 0.3rem;
+    background-color: #477fc0;
+    border: none;
+    margin: 0.3rem;
+    color: white;
+    font-size: 1rem;
+    font-size: 1rem;
+  }
 
-.anothe_deliverys button:hover {
-  filter: brightness(50%);
-  transition: all 0.2s;
+  button:hover {
+    filter: brightness(50%);
+    transition: all 0.2s;
+  }
+  
 }
-

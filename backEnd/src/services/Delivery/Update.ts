@@ -9,19 +9,22 @@ export default class Update {
   async execute({
     client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id
   }: UpdateDeliveryProps) {
+
     try {
       const checkExist = await Delivery.getById(id);
+
       if(checkExist) {
         await DeliveryModel.update(
           { client, deliveryDate },
           { where: { id } }
         );
-  
         await DeliveryDestinationModel.update(
           { departureCoordenate, departureName, destinyCoordenate, destinyName },
           { where: { id } }
         );
-        return new Delivery({ client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id });
+        return new Delivery({
+            client, deliveryDate, departureCoordenate, departureName, destinyCoordenate, destinyName, id
+        });
       } else {
         return 'Delivery dont exist'
       }
